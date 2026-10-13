@@ -33,5 +33,9 @@ export function handleInterestError(err: unknown): string {
   if (err instanceof DuplicateLeadError || (err as { code?: string })?.code === 'DUPLICATE') {
     return 'Esta manifestação já foi cadastrada anteriormente para este e-mail institucional.';
   }
-  return (err as Error)?.message || 'Erro ao enviar manifestação. Tente novamente em instantes.';
+  const msg = (err as Error)?.message || '';
+  if (/failed to fetch|networkerror|load failed/i.test(msg)) {
+    return 'Falha de conexão com o servidor. Verifique sua conexão com a internet e tente novamente.';
+  }
+  return msg || 'Erro ao enviar manifestação. Tente novamente em instantes.';
 }

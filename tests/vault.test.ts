@@ -46,7 +46,7 @@ describe('8.3 Auditoria de Segregação de Cofre e Pseudonimização', () => {
     const raw = {
       nome: 'Prof. Carlos', email: 'carlos@ies.edu.br', telefone: '(11) 98765-4321',
       instituicao: 'Universidade X', campus: 'Central', cargo: 'Coordenador',
-      curso: 'Adm', previsaoSemestre: '1/2027', observacoes: '',
+      curso: 'Adm', previsaoSemestre: '1/2027', observacoes: 'Dados sigilosos',
     };
     const docId = 'lead_uuid_123';
     const vault = buildVaultRecord(raw, docId);
@@ -56,9 +56,12 @@ describe('8.3 Auditoria de Segregação de Cofre e Pseudonimização', () => {
     expect(vault.nome).toMatch(/^v1:/);
     expect(vault.email).toMatch(/^v1:/);
     expect(vault.telefone).toMatch(/^v1:/);
+    expect(vault.observacoes).toMatch(/^v1:/);
     expect(op).not.toHaveProperty('nome');
     expect(op).not.toHaveProperty('email');
     expect(op).not.toHaveProperty('telefone');
+    expect(op).not.toHaveProperty('observacoes');
+    expect(op.temObservacoes).toBe(true);
     expect(op.emailHash).toBe(hash);
     expect(op.vaultRef).toBe('vault_leads/lead_uuid_123');
   });

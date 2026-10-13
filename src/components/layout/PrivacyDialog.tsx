@@ -38,9 +38,7 @@ function PrivacyDialogDescription() {
     <div id="privacy-dialog-description" className="space-y-4 text-sm text-gray-600 leading-relaxed">
       <p>
         As preferências de tamanho de fonte e alto contraste deste portal são persistidas localmente
-        pela chave <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs text-blue-900 font-mono">
-          crasp_a11y_state
-        </code>.
+        no seu navegador para assegurar conforto visual e uma experiência inclusiva e personalizada.
       </p>
       <p>
         Este armazenamento local tem a finalidade exclusiva de preservar a usabilidade e as configurações de

@@ -22,7 +22,7 @@ export function EthosFilter() {
 
 export function ChancelaSvgFilters() {
   return (
-    <svg width="0" height="0" className="absolute hidden" aria-hidden="true">
+    <svg width="0" height="0" className="sr-only" aria-hidden="true">
       <defs>
         <IbgcFilter />
         <EthosFilter />

@@ -47,7 +47,7 @@ export function BackToHomeLink() {
   return (
     <Link
       to="/"
-      aria-label="Voltar à tela inicial"
+      aria-label="Voltar ao início"
       className={
         'inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors ' +
         'font-medium px-3 py-2 rounded-lg hover:bg-gray-100 text-sm mb-6 self-start no-underline'

@@ -4,10 +4,19 @@ import { TopBar } from './TopBar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 
+const PAGE_TITLES: Record<string, string> = {
+  '/': 'Início | Componente Curricular de ASG e ODS | CRA-SP',
+  '/chancela': 'Chancela Institucional | CRA-SP',
+  '/metodologia': 'Metodologia e Diretrizes | CRA-SP',
+  '/trilha': 'Trilha de Aprendizagem | CRA-SP',
+  '/registro-interesse': 'Manifestação de Interesse | CRA-SP',
+};
+
 export const PublicLayout = () => {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = PAGE_TITLES[location.pathname] || 'Componente Curricular de ASG e ODS | CRA-SP';
     if (location.hash) {
       const id = location.hash.replace('#', '');
       const element = document.getElementById(id);

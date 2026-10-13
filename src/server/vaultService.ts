@@ -34,7 +34,7 @@ export function decryptVaultField(cipherText: string): string {
 }
 
 export function buildVaultRecord(
-  data: { nome: string; email: string; telefone: string },
+  data: { nome: string; email: string; telefone: string; observacoes?: string },
   docId: string
 ) {
   const now = new Date().toISOString();
@@ -43,6 +43,7 @@ export function buildVaultRecord(
     nome: encryptVaultField(data.nome),
     email: encryptVaultField(data.email),
     telefone: encryptVaultField(data.telefone),
+    observacoes: encryptVaultField(data.observacoes || ''),
     criadoEm: now,
     vaultEncrypted: true,
   };
@@ -70,7 +71,7 @@ export function buildOperationalRecord(
     cargo: data.cargo,
     curso: data.curso,
     previsaoSemestre: data.previsaoSemestre,
-    observacoes: data.observacoes || '',
+    temObservacoes: Boolean(data.observacoes?.trim()),
     origem: 'portal_cra_sp',
     status: 'pendente_analise',
     criadoEm: now,

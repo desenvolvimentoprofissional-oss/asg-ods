@@ -25,10 +25,20 @@ const ALLOWED_ROOT_FILES = new Set([
 
 const ALLOWED_DIRECTORIES = new Set(['src', 'scripts', 'tests', 'public']);
 
+const FORBIDDEN_FILE_PATTERNS = [
+  /credential/i,
+  /secret/i,
+  /\.env/i,
+  /token/i,
+  /\.pem$/i,
+  /\.key$/i,
+];
+
 const SENSITIVE_CONTENT_PATTERNS = [
   /-----BEGIN (?:[A-Z0-9_-]+ )?PRIVATE KEY-----/i,
   /AIza[0-9A-Za-z-_]{35}/,
   /"private_key":\s*"-----BEGIN/i,
+  /(?:password|passwd|api[_-]?key|secret[_-]?key)\s*[:=]\s*["'][^"']+["']/i,
 ];
 
 function hasSensitiveContent(content: string): boolean {
@@ -36,6 +46,8 @@ function hasSensitiveContent(content: string): boolean {
 }
 
 function isValidFile(entryName: string): boolean {
+  const isForbiddenName = FORBIDDEN_FILE_PATTERNS.some((p) => p.test(entryName));
+  if (isForbiddenName) return false;
   const ext = path.extname(entryName).toLowerCase();
   return !BINARY_EXTENSIONS.has(ext);
 }

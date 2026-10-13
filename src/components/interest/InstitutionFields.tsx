@@ -18,6 +18,7 @@ export function IesInput(props: {
         id="ies"
         type="text"
         required
+        autoComplete="organization"
         value={props.instituicao}
         onChange={(e) => props.setInstituicao(e.target.value)}
         className={inputClass}

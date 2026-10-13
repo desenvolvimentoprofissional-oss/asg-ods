@@ -92,7 +92,7 @@ export function getCyclomaticComplexity(rootNode: ts.Node): number {
     ts.forEachChild(node, visit);
   }
   const body = (rootNode as { body?: ts.Node }).body || rootNode;
-  ts.forEachChild(body, visit);
+  visit(body);
   return cc;
 }
 
@@ -152,7 +152,7 @@ export function getCognitiveComplexity(rootNode: ts.Node): number {
   }
 
   const body = (rootNode as { body?: ts.Node }).body || rootNode;
-  ts.forEachChild(body, (c) => visit(c, 0, null));
+  visit(body, 0, null);
   return ctx.score;
 }
 

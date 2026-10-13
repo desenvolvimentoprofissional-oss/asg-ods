@@ -1555,26 +1555,27 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 43 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 55 | 19 | 12 | 7 | 9 | CONFORME |
 | `server.ts` | `readFirebaseConfig` | 18 | 17 | 12 | 7 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
 | `server.ts` | `executeLeadCreation` | 131 | 28 | 20 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `evaluateFunctionNode` | 84 | 25 | 15 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 125 | 27 | 15 | 6 | 6 | CONFORME |
+| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 126 | 27 | 15 | 6 | 6 | CONFORME |
 | `server.ts` | `rateLimiter` | 100 | 22 | 14 | 6 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
 | `scripts/metrics-ast.ts` | `checkNesting` | 197 | 17 | 7 | 6 | 5 | CONFORME |
 | `src/components/interest/useInterestForm.ts` | `isFormValid` | 30 | 10 | 7 | 6 | 1 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 85 | 9 | 6 | 6 | 5 | CONFORME |
+| `src/components/interest/interestFormUtils.ts` | `handleInterestError` | 32 | 10 | 6 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
-| `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 82 | 6 | 5 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `anonymous` | 98 | 25 | 17 | 5 | 4 | CONFORME |
+| `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 80 | 6 | 5 | 6 | 5 | CONFORME |
+| `src/server/leadBucketService.ts` | `anonymous` | 99 | 25 | 17 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 59 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 63 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 75 | 17 | 8 | 5 | 6 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 36 | 10 | 7 | 5 | 4 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 9 | 6 | 5 | 5 | CONFORME |
 | `src/server/securityHeaders.ts` | `anonymous` | 84 | 8 | 5 | 5 | 6 | CONFORME |
@@ -1584,7 +1585,6 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `src/components/layout/HeaderMobileMenu.tsx` | `MobileMenuItem` | 9 | 32 | 20 | 4 | 4 | CONFORME |
 | `src/components/layout/HeaderDesktopNav.tsx` | `anonymous` | 9 | 22 | 18 | 4 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `auditFile` | 110 | 19 | 13 | 4 | 3 | CONFORME |
-| `src/components/presentation/useSignatoriesCarousel.ts` | `anonymous` | 91 | 12 | 11 | 4 | 3 | CONFORME |
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*
@@ -1962,10 +1962,20 @@ const ALLOWED_ROOT_FILES = new Set([
 
 const ALLOWED_DIRECTORIES = new Set(['src', 'scripts', 'tests', 'public']);
 
+const FORBIDDEN_FILE_PATTERNS = [
+  /credential/i,
+  /secret/i,
+  /\.env/i,
+  /token/i,
+  /\.pem$/i,
+  /\.key$/i,
+];
+
 const SENSITIVE_CONTENT_PATTERNS = [
   /-----BEGIN (?:[A-Z0-9_-]+ )?PRIVATE KEY-----/i,
   /AIza[0-9A-Za-z-_]{35}/,
   /"private_key":\s*"-----BEGIN/i,
+  /(?:password|passwd|api[_-]?key|secret[_-]?key)\s*[:=]\s*["'][^"']+["']/i,
 ];
 
 function hasSensitiveContent(content: string): boolean {
@@ -1973,6 +1983,8 @@ function hasSensitiveContent(content: string): boolean {
 }
 
 function isValidFile(entryName: string): boolean {
+  const isForbiddenName = FORBIDDEN_FILE_PATTERNS.some((p) => p.test(entryName));
+  if (isForbiddenName) return false;
   const ext = path.extname(entryName).toLowerCase();
   return !BINARY_EXTENSIONS.has(ext);
 }
@@ -2199,7 +2211,7 @@ export function getCyclomaticComplexity(rootNode: ts.Node): number {
     ts.forEachChild(node, visit);
   }
   const body = (rootNode as { body?: ts.Node }).body || rootNode;
-  ts.forEachChild(body, visit);
+  visit(body);
   return cc;
 }
 
@@ -2259,7 +2271,7 @@ export function getCognitiveComplexity(rootNode: ts.Node): number {
   }
 
   const body = (rootNode as { body?: ts.Node }).body || rootNode;
-  ts.forEachChild(body, (c) => visit(c, 0, null));
+  visit(body, 0, null);
   return ctx.score;
 }
 
@@ -2881,7 +2893,12 @@ function configureProductionRoutes(): void {
 async function configureDevRoutes(port: number): Promise<void> {
   const { createServer: createViteServer } = await import('vite');
   const vite = await createViteServer({
-    server: { middlewareMode: true, port, host: '0.0.0.0', allowedHosts: true },
+    server: {
+      middlewareMode: true,
+      port,
+      host: '0.0.0.0',
+      allowedHosts: ['.ai.studio', '.run.app', 'localhost', '127.0.0.1'],
+    },
     appType: 'spa',
   });
   app.use(vite.middlewares);
@@ -3453,7 +3470,7 @@ export function EthosFilter() {
 
 export function ChancelaSvgFilters() {
   return (
-    <svg width="0" height="0" className="absolute hidden" aria-hidden="true">
+    <svg width="0" height="0" className="sr-only" aria-hidden="true">
       <defs>
         <IbgcFilter />
         <EthosFilter />
@@ -4167,6 +4184,7 @@ export function NameInput({ nome, setNome }: { nome: string; setNome: (v: string
         id="nome"
         type="text"
         required
+        autoComplete="name"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
         className={inputClass}
@@ -4216,6 +4234,7 @@ export function EmailInput({ email, setEmail }: { email: string; setEmail: (v: s
         id="email"
         type="email"
         required
+        autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className={inputClass}
@@ -4232,6 +4251,7 @@ export function PhoneInput({ telefone, setTelefone }: { telefone: string; setTel
         id="telefone"
         type="tel"
         required
+        autoComplete="tel"
         value={telefone}
         onChange={(e) => setTelefone(formatPhone(e.target.value))}
         maxLength={15}
@@ -4397,6 +4417,7 @@ export function IesInput(props: {
         id="ies"
         type="text"
         required
+        autoComplete="organization"
         value={props.instituicao}
         onChange={(e) => props.setInstituicao(e.target.value)}
         className={inputClass}
@@ -4596,7 +4617,11 @@ export function handleInterestError(err: unknown): string {
   if (err instanceof DuplicateLeadError || (err as { code?: string })?.code === 'DUPLICATE') {
     return 'Esta manifestação já foi cadastrada anteriormente para este e-mail institucional.';
   }
-  return (err as Error)?.message || 'Erro ao enviar manifestação. Tente novamente em instantes.';
+  const msg = (err as Error)?.message || '';
+  if (/failed to fetch|networkerror|load failed/i.test(msg)) {
+    return 'Falha de conexão com o servidor. Verifique sua conexão com a internet e tente novamente.';
+  }
+  return msg || 'Erro ao enviar manifestação. Tente novamente em instantes.';
 }
 
 ============================================================
@@ -5314,9 +5339,7 @@ function PrivacyDialogDescription() {
     <div id="privacy-dialog-description" className="space-y-4 text-sm text-gray-600 leading-relaxed">
       <p>
         As preferências de tamanho de fonte e alto contraste deste portal são persistidas localmente
-        pela chave <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs text-blue-900 font-mono">
-          crasp_a11y_state
-        </code>.
+        no seu navegador para assegurar conforto visual e uma experiência inclusiva e personalizada.
       </p>
       <p>
         Este armazenamento local tem a finalidade exclusiva de preservar a usabilidade e as configurações de
@@ -5405,10 +5428,19 @@ import { TopBar } from './TopBar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 
+const PAGE_TITLES: Record<string, string> = {
+  '/': 'Início | Componente Curricular de ASG e ODS | CRA-SP',
+  '/chancela': 'Chancela Institucional | CRA-SP',
+  '/metodologia': 'Metodologia e Diretrizes | CRA-SP',
+  '/trilha': 'Trilha de Aprendizagem | CRA-SP',
+  '/registro-interesse': 'Manifestação de Interesse | CRA-SP',
+};
+
 export const PublicLayout = () => {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = PAGE_TITLES[location.pathname] || 'Componente Curricular de ASG e ODS | CRA-SP';
     if (location.hash) {
       const id = location.hash.replace('#', '');
       const element = document.getElementById(id);
@@ -6325,7 +6357,7 @@ export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
           src={sig.logo}
           alt={`Logo ${sig.name}`}
           className={`object-contain ${sig.imgClass || 'max-h-full max-w-[160px]'}`}
-          style={sig.filterId ? { filter: `url(#${sig.filterId})` } : {}}
+          style={sig.filterStyle ? { filter: sig.filterStyle } : undefined}
           referrerPolicy="no-referrer"
         />
       </div>
@@ -6885,6 +6917,7 @@ export interface Signatory {
   name: string;
   logo: string;
   description: string;
+  filterStyle?: string;
   filterId?: string;
   imgClass?: string;
 }
@@ -6892,61 +6925,65 @@ export interface Signatory {
 export const signatories: Signatory[] = [
   {
     name: 'CRA-SP',
-    logo: 'https://crasp-frontend.vercel.app/cra-sp2.svg',
+    logo: '/imgs/partners/crasp.svg',
     description:
       'O Conselho Regional de Administração de São Paulo é uma autarquia federal pertencente ao ' +
       'Sistema CFA/CRAs que tem como principais funções o registro e a fiscalização do exercício ' +
       'profissional nas áreas da Administração. Com atuação social, o CRA-SP também apoia e ' +
       'participa de projetos que possam colaborar com a formação dos futuros profissionais ' +
       'e a valorização da profissão.',
-    imgClass: 'max-h-[45px] max-w-[140px]',
+    imgClass: 'max-h-[48px] max-w-[140px]',
   },
   {
     name: 'ANGRAD',
-    logo: 'https://hackathonenangrad.espm.edu.br/wp-content/uploads/logo-angrad.png',
+    logo: '/imgs/partners/angrad.png',
     description:
       'A Associação Nacional dos Cursos de Graduação em Administração é uma entidade que tem como ' +
       'missão promover a sinergia e o fortalecimento das escolas de Administração e Gestão, ' +
       'estimulando a formação de líderes competentes e comprometidos com um mundo economicamente ' +
       'viável, socialmente justo e ambientalmente equilibrado.',
-    imgClass: 'max-h-[55px] max-w-[180px] scale-125',
+    imgClass: 'max-h-[50px] max-w-[160px]',
   },
   {
     name: 'Instituto Ethos',
-    logo: 'https://www.ethos.org.br/wp-content/uploads/2024/09/footer-logo.png',
+    logo: '/imgs/partners/ethos.png',
     description:
       'O Instituto Ethos é uma organização da sociedade civil brasileira pioneira na mobilização ' +
       'de empresas por uma atuação justa e responsável. O Ethos nasceu ASG, pois desde 1998 as ' +
       'pautas da responsabilidade social, ética e sustentabilidade guiam todas as suas atividades, ' +
       'desenvolvendo indicadores para auxiliar as empresas a se tornarem mais diversas, inclusivas e éticas.',
-    filterId: 'colorize-ethos',
-    imgClass: 'max-h-[40px] max-w-[130px]',
+    filterStyle:
+      'brightness(0) invert(42%) sepia(90%) saturate(1400%) hue-rotate(165deg) ' +
+      'brightness(95%) contrast(110%)',
+    imgClass: 'max-h-[46px] max-w-[130px]',
   },
   {
     name: 'IBGC',
-    logo:
-      'https://firebasestorage.googleapis.com/v0/b/sig3-914eb.firebasestorage.app/o/banners%2F' +
-      '1784744226851_logo-ibgc-com-descritivo-horizontal-RGB-negativo.png' +
-      '?alt=media&token=ec4a59cb-4771-4216-aae3-dffa8258a6dd',
+    logo: '/imgs/partners/ibgc.png',
     description:
       'O Instituto Brasileiro de Governança Corporativa é uma organização da sociedade civil ' +
       'que atua como a maior referência no Brasil e uma das principais no mundo em governança ' +
       'corporativa. Seu objetivo é gerar e disseminar conhecimento em governança corporativa e ' +
       'influenciar os mais diversos agentes na adoção das melhores práticas, contribuindo para ' +
       'o desempenho sustentável das organizações.',
-    filterId: 'colorize-ibgc',
-    imgClass: 'max-h-[72px] max-w-[250px] scale-[1.45]',
+    filterStyle:
+      'brightness(0) invert(18%) sepia(90%) saturate(2800%) hue-rotate(205deg) ' +
+      'brightness(95%) contrast(110%)',
+    imgClass: 'max-h-[52px] max-w-[170px]',
   },
   {
     name: 'PRME',
-    logo: 'https://ju.se/images/18.7910f38417dc32933f5f2/1639658062657/prme-stacked-solid-rgb.png',
+    logo: '/imgs/partners/prme.png',
     description:
       'O Principles for Responsible Management Education é uma iniciativa apoiada pelas Nações ' +
       'Unidas que visa inspirar e engajar o ensino de gestão, pesquisa e liderança com foco na ' +
       'sustentabilidade e responsabilidade social. O PRME atua desenvolvendo os futuros líderes ' +
       'para equilibrar objetivos econômicos e de sustentabilidade, alinhando as instituições ' +
       'acadêmicas aos ODS.',
-    imgClass: 'max-h-[50px] max-w-[140px]',
+    filterStyle:
+      'brightness(0) invert(18%) sepia(35%) saturate(2000%) hue-rotate(180deg) ' +
+      'brightness(90%) contrast(110%)',
+    imgClass: 'max-h-[48px] max-w-[140px]',
   },
 ];
 
@@ -8344,7 +8381,7 @@ export function BackToHomeLink() {
   return (
     <Link
       to="/"
-      aria-label="Voltar à tela inicial"
+      aria-label="Voltar ao início"
       className={
         'inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors ' +
         'font-medium px-3 py-2 rounded-lg hover:bg-gray-100 text-sm mb-6 self-start no-underline'
@@ -8495,6 +8532,7 @@ export function sanitizeErrorMessage(rawMsg: string): string {
   return rawMsg
     .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '[REDACTED_EMAIL]')
     .replace(/\(?\d{2}\)?\s?\d{4,5}-?\d{4}/g, '[REDACTED_PHONE]')
+    .replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[REDACTED_CPF]')
     .replace(/leads_adesao\/[a-zA-Z0-9_-]+/g, 'leads_adesao/[REDACTED_DOC]');
 }
 
@@ -8756,7 +8794,7 @@ export function decryptVaultField(cipherText: string): string {
 }
 
 export function buildVaultRecord(
-  data: { nome: string; email: string; telefone: string },
+  data: { nome: string; email: string; telefone: string; observacoes?: string },
   docId: string
 ) {
   const now = new Date().toISOString();
@@ -8765,6 +8803,7 @@ export function buildVaultRecord(
     nome: encryptVaultField(data.nome),
     email: encryptVaultField(data.email),
     telefone: encryptVaultField(data.telefone),
+    observacoes: encryptVaultField(data.observacoes || ''),
     criadoEm: now,
     vaultEncrypted: true,
   };
@@ -8792,7 +8831,7 @@ export function buildOperationalRecord(
     cargo: data.cargo,
     curso: data.curso,
     previsaoSemestre: data.previsaoSemestre,
-    observacoes: data.observacoes || '',
+    temObservacoes: Boolean(data.observacoes?.trim()),
     origem: 'portal_cra_sp',
     status: 'pendente_analise',
     criadoEm: now,
@@ -9366,7 +9405,7 @@ describe('8.3 Auditoria de Segregação de Cofre e Pseudonimização', () => {
     const raw = {
       nome: 'Prof. Carlos', email: 'carlos@ies.edu.br', telefone: '(11) 98765-4321',
       instituicao: 'Universidade X', campus: 'Central', cargo: 'Coordenador',
-      curso: 'Adm', previsaoSemestre: '1/2027', observacoes: '',
+      curso: 'Adm', previsaoSemestre: '1/2027', observacoes: 'Dados sigilosos',
     };
     const docId = 'lead_uuid_123';
     const vault = buildVaultRecord(raw, docId);
@@ -9376,9 +9415,12 @@ describe('8.3 Auditoria de Segregação de Cofre e Pseudonimização', () => {
     expect(vault.nome).toMatch(/^v1:/);
     expect(vault.email).toMatch(/^v1:/);
     expect(vault.telefone).toMatch(/^v1:/);
+    expect(vault.observacoes).toMatch(/^v1:/);
     expect(op).not.toHaveProperty('nome');
     expect(op).not.toHaveProperty('email');
     expect(op).not.toHaveProperty('telefone');
+    expect(op).not.toHaveProperty('observacoes');
+    expect(op.temObservacoes).toBe(true);
     expect(op.emailHash).toBe(hash);
     expect(op.vaultRef).toBe('vault_leads/lead_uuid_123');
   });
@@ -9442,7 +9484,7 @@ export default defineConfig({
   server: {
     port: 3000,
     host: '0.0.0.0',
-    allowedHosts: true,
+    allowedHosts: ['.ai.studio', '.run.app', 'localhost', '127.0.0.1'],
     hmr: process.env.DISABLE_HMR !== 'true',
   },
 });

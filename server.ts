@@ -203,7 +203,12 @@ function configureProductionRoutes(): void {
 async function configureDevRoutes(port: number): Promise<void> {
   const { createServer: createViteServer } = await import('vite');
   const vite = await createViteServer({
-    server: { middlewareMode: true, port, host: '0.0.0.0', allowedHosts: true },
+    server: {
+      middlewareMode: true,
+      port,
+      host: '0.0.0.0',
+      allowedHosts: ['.ai.studio', '.run.app', 'localhost', '127.0.0.1'],
+    },
     appType: 'spa',
   });
   app.use(vite.middlewares);

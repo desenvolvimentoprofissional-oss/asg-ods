@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     port: 3000,
     host: '0.0.0.0',
-    allowedHosts: true,
+    allowedHosts: ['.ai.studio', '.run.app', 'localhost', '127.0.0.1'],
     hmr: process.env.DISABLE_HMR !== 'true',
   },
 });

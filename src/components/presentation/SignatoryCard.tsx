@@ -13,7 +13,7 @@ export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
           src={sig.logo}
           alt={`Logo ${sig.name}`}
           className={`object-contain ${sig.imgClass || 'max-h-full max-w-[160px]'}`}
-          style={sig.filterId ? { filter: `url(#${sig.filterId})` } : {}}
+          style={sig.filterStyle ? { filter: sig.filterStyle } : undefined}
           referrerPolicy="no-referrer"
         />
       </div>

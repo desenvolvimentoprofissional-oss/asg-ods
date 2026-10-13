@@ -20,6 +20,7 @@ export function NameInput({ nome, setNome }: { nome: string; setNome: (v: string
         id="nome"
         type="text"
         required
+        autoComplete="name"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
         className={inputClass}
@@ -69,6 +70,7 @@ export function EmailInput({ email, setEmail }: { email: string; setEmail: (v: s
         id="email"
         type="email"
         required
+        autoComplete="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className={inputClass}
@@ -85,6 +87,7 @@ export function PhoneInput({ telefone, setTelefone }: { telefone: string; setTel
         id="telefone"
         type="tel"
         required
+        autoComplete="tel"
         value={telefone}
         onChange={(e) => setTelefone(formatPhone(e.target.value))}
         maxLength={15}

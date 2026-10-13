@@ -30,26 +30,27 @@
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 43 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 55 | 19 | 12 | 7 | 9 | CONFORME |
 | `server.ts` | `readFirebaseConfig` | 18 | 17 | 12 | 7 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
 | `server.ts` | `executeLeadCreation` | 131 | 28 | 20 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `evaluateFunctionNode` | 84 | 25 | 15 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 125 | 27 | 15 | 6 | 6 | CONFORME |
+| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 126 | 27 | 15 | 6 | 6 | CONFORME |
 | `server.ts` | `rateLimiter` | 100 | 22 | 14 | 6 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
 | `scripts/metrics-ast.ts` | `checkNesting` | 197 | 17 | 7 | 6 | 5 | CONFORME |
 | `src/components/interest/useInterestForm.ts` | `isFormValid` | 30 | 10 | 7 | 6 | 1 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 85 | 9 | 6 | 6 | 5 | CONFORME |
+| `src/components/interest/interestFormUtils.ts` | `handleInterestError` | 32 | 10 | 6 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
-| `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 82 | 6 | 5 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `anonymous` | 98 | 25 | 17 | 5 | 4 | CONFORME |
+| `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 80 | 6 | 5 | 6 | 5 | CONFORME |
+| `src/server/leadBucketService.ts` | `anonymous` | 99 | 25 | 17 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 59 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 63 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 75 | 17 | 8 | 5 | 6 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 36 | 10 | 7 | 5 | 4 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 9 | 6 | 5 | 5 | CONFORME |
 | `src/server/securityHeaders.ts` | `anonymous` | 84 | 8 | 5 | 5 | 6 | CONFORME |
@@ -59,7 +60,6 @@
 | `src/components/layout/HeaderMobileMenu.tsx` | `MobileMenuItem` | 9 | 32 | 20 | 4 | 4 | CONFORME |
 | `src/components/layout/HeaderDesktopNav.tsx` | `anonymous` | 9 | 22 | 18 | 4 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `auditFile` | 110 | 19 | 13 | 4 | 3 | CONFORME |
-| `src/components/presentation/useSignatoriesCarousel.ts` | `anonymous` | 91 | 12 | 11 | 4 | 3 | CONFORME |
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*
