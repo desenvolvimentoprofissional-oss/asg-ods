@@ -1,0 +1,33 @@
+{
+  "entities": {
+    "leads_adesao": {
+      "description": "Documentos agregadores (parte1, parte2...) de manifestações de interesse com limite de 90% de 1MB por documento",
+      "fields": {
+        "numeroParte": {
+          "type": "number",
+          "description": "Número ordinal da partição (1, 2, 3...)"
+        },
+        "criadoEm": {
+          "type": "string",
+          "description": "Timestamp ISO da criação da parte"
+        },
+        "atualizadoEm": {
+          "type": "string",
+          "description": "Timestamp ISO da última inclusão de manifestação"
+        },
+        "totalRegistros": {
+          "type": "number",
+          "description": "Quantidade de manifestações agregadas neste documento"
+        },
+        "tamanhoAproximadoBytes": {
+          "type": "number",
+          "description": "Tamanho aproximado em bytes da partição (teto: 90% de 1MB = 943.718 bytes)"
+        },
+        "manifestacoes": {
+          "type": "array",
+          "description": "Lista de manifestações de interesse de IES agregadas no bloco"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,630 @@
+@import "tailwindcss";
+
+:root {
+  --font-scale: 1;
+}
+
+html {
+  font-size: calc(16px * var(--font-scale, 1));
+}
+
+html[data-font-scale="1"] { --font-scale: 1; }
+html[data-font-scale="1.05"] { --font-scale: 1.05; }
+html[data-font-scale="1.1"] { --font-scale: 1.1; }
+html[data-font-scale="1.15"] { --font-scale: 1.15; }
+html[data-font-scale="1.2"] { --font-scale: 1.2; }
+
+.crasp-page-container {
+  width: 100% !important;
+  max-width: 1152px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  box-sizing: border-box !important;
+}
+
+.max-w-6xl {
+  max-width: 1152px !important;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+html:hover {
+  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.25s ease;
+}
+
+body:hover::-webkit-scrollbar-thumb,
+::-webkit-scrollbar:hover,
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.45);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.75) !important;
+}
+
+:fullscreen {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+:fullscreen::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+:fullscreen:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.45);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulse-chevron {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@layer utilities {
+  .animate-pulse-chevron {
+    animation: pulse-chevron 1.5s ease-in-out infinite;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee 120s linear infinite;
+  }
+
+  .animate-marquee-slow:hover {
+    animation-play-state: paused;
+  }
+
+  .crasp-a11y-circle-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(219, 234, 254, 0.35);
+    background-color: rgba(219, 234, 254, 0.14);
+    color: inherit;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 640px) {
+    .crasp-a11y-circle-btn {
+      width: 1.875rem;
+      height: 1.875rem;
+    }
+  }
+
+  .crasp-a11y-circle-btn:hover {
+    background-color: rgba(219, 234, 254, 0.22);
+    border-color: rgba(219, 234, 254, 0.5);
+  }
+
+  .topbar-social-btn,
+  .footer-social-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background-color: #ffffff;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .topbar-social-btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .topbar-social-btn:hover,
+  .footer-social-btn:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+
+html.alto-contraste,
+html.alto-contraste * {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.alto-contraste a,
+html.alto-contraste a *,
+html.alto-contraste button,
+html.alto-contraste button *,
+html.alto-contraste [role="button"],
+html.alto-contraste [role="button"] * {
+  color: #facc15 !important;
+  border-color: #facc15 !important;
+}
+
+html.alto-contraste [aria-label="Banner Principal"] *:not(button):not(button *):not(.main-banner-cta):not(
+  .main-banner-cta *
+):not(a):not(a *) {
+  background-color: transparent !important;
+}
+
+html.alto-contraste [aria-label="Banner Principal"] img {
+  filter: grayscale(100%) contrast(110%) brightness(1.15) !important;
+  opacity: 0.65 !important;
+  display: block !important;
+}
+
+html.alto-contraste .main-banner-cta {
+  border: 2px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: #000000 !important;
+}
+
+html.alto-contraste .main-banner-cta * {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .page-header-banner {
+  background-color: #000000 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+
+html.alto-contraste .page-header-banner *:not(img) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html.alto-contraste .page-header-banner img {
+  filter: grayscale(100%) contrast(110%) brightness(1.15) !important;
+  opacity: 0.65 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+html.alto-contraste .page-header-banner h1,
+html.alto-contraste .page-header-banner p {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 6px #000000 !important;
+}
+
+html.alto-contraste .card-chancela-banner,
+html.alto-contraste .card-metodologia-banner,
+html.alto-contraste main a[href*="chancela"],
+html.alto-contraste main a[href*="metodologia"],
+html.alto-contraste section a[href*="chancela"],
+html.alto-contraste section a[href*="metodologia"] {
+  border: 2px solid #ffffff !important;
+  overflow: hidden !important;
+  border-radius: 1rem !important;
+}
+
+html.alto-contraste .card-chancela-banner *:not(img),
+html.alto-contraste .card-metodologia-banner *:not(img),
+html.alto-contraste main a[href*="chancela"] *:not(img),
+html.alto-contraste main a[href*="metodologia"] *:not(img),
+html.alto-contraste section a[href*="chancela"] *:not(img),
+html.alto-contraste section a[href*="metodologia"] *:not(img) {
+  background-color: transparent !important;
+}
+
+html.alto-contraste .card-chancela-banner h3,
+html.alto-contraste .card-metodologia-banner h3,
+html.alto-contraste main a[href*="chancela"] h3,
+html.alto-contraste main a[href*="metodologia"] h3,
+html.alto-contraste section a[href*="chancela"] h3,
+html.alto-contraste section a[href*="metodologia"] h3 {
+  color: #ffffff !important;
+}
+
+html.alto-contraste .card-chancela-banner span,
+html.alto-contraste .card-metodologia-banner span,
+html.alto-contraste .card-chancela-banner svg,
+html.alto-contraste .card-metodologia-banner svg,
+html.alto-contraste main a[href*="chancela"] span,
+html.alto-contraste main a[href*="metodologia"] span,
+html.alto-contraste main a[href*="chancela"] svg,
+html.alto-contraste main a[href*="metodologia"] svg,
+html.alto-contraste section a[href*="chancela"] span,
+html.alto-contraste section a[href*="metodologia"] span,
+html.alto-contraste section a[href*="chancela"] svg,
+html.alto-contraste section a[href*="metodologia"] svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .card-chancela-banner img,
+html.alto-contraste .card-metodologia-banner img,
+html.alto-contraste main a[href*="chancela"] img,
+html.alto-contraste main a[href*="metodologia"] img,
+html.alto-contraste section a[href*="chancela"] img,
+html.alto-contraste section a[href*="metodologia"] img {
+  filter: grayscale(100%) contrast(110%) brightness(1.15) !important;
+  opacity: 0.85 !important;
+  display: block !important;
+  max-height: 100% !important;
+  transform: none !important;
+}
+
+html.alto-contraste .adesao-banner-card *:not(button):not(button *):not(a):not(a *) {
+  background-color: transparent !important;
+}
+
+html.alto-contraste .adesao-banner-card h2,
+html.alto-contraste .adesao-banner-card p,
+html.alto-contraste .adesao-banner-card span:not(a span):not(button span) {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 4px #000000 !important;
+  color: #ffffff !important;
+}
+
+html.alto-contraste .adesao-banner-card img {
+  filter: grayscale(100%) contrast(115%) brightness(0.95) !important;
+  opacity: 0.42 !important;
+  display: block !important;
+}
+
+html.alto-contraste .adesao-banner-card a,
+html.alto-contraste .adesao-banner-card button {
+  border: 2px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .adesao-banner-card a *,
+html.alto-contraste .adesao-banner-card button * {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .border-l-2 {
+  border-color: #facc15 !important;
+}
+
+html.alto-contraste .border-l-2 > div > div.rounded-full {
+  background-color: #000000 !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: none !important;
+}
+
+html.alto-contraste .border-l-2 > div > div.rounded-full span {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .border-l-2 article,
+html.alto-contraste .border-l-2 [class*="Card"],
+html.alto-contraste .border-l-2 .group > div:nth-child(2) {
+  background-color: #000000 !important;
+  border: 1px solid #ffffff !important;
+}
+
+html.alto-contraste .border-l-2 article *,
+html.alto-contraste .border-l-2 [class*="Card"] * {
+  background-color: transparent !important;
+}
+
+html.alto-contraste .border-l-2 h3,
+html.alto-contraste .border-l-2 p,
+html.alto-contraste .border-l-2 div:not(.rounded-full) {
+  color: #ffffff !important;
+}
+
+html.alto-contraste .border-l-2 [class*="bg-blue-50"] {
+  border: 1px solid #ffffff !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .border-l-2 [class*="bg-blue-50"] svg {
+  color: #ffffff !important;
+}
+
+html.alto-contraste .border-l-2 .partner-badge,
+html.alto-contraste .border-l-2 .partner-badge span,
+html.alto-contraste .partner-badge,
+html.alto-contraste .partner-badge * {
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .logos-carousel-bar,
+html.alto-contraste .logos-carousel-bar * {
+  border: none !important;
+  border-top: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html.alto-contraste .partner-names-section,
+html.alto-contraste .partner-names-section * {
+  border-color: transparent !important;
+}
+
+html.alto-contraste .partner-names-section .pointer-events-none {
+  display: none !important;
+}
+
+html.alto-contraste img {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+html.alto-contraste .partner-names-section img,
+html.alto-contraste .partner-logo-img,
+html.alto-contraste .animate-marquee img {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  filter: brightness(0) invert(0.8) !important;
+  opacity: 1 !important;
+}
+
+html.alto-contraste .crasp-header .crasp-logo path,
+html.alto-contraste header .crasp-logo path,
+html.alto-contraste .crasp-logo path {
+  fill: #ffffff !important;
+}
+
+html.alto-contraste header nav,
+html.alto-contraste header nav a,
+html.alto-contraste header nav button {
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste header nav a:hover,
+html.alto-contraste header nav button:hover {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+html.alto-contraste input,
+html.alto-contraste textarea,
+html.alto-contraste select {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-color: #facc15 !important;
+  outline: 2px solid #facc15 !important;
+  outline-offset: -2px !important;
+}
+
+html.alto-contraste label {
+  color: #ffffff !important;
+}
+
+html.alto-contraste select option {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.alto-contraste form button[type="submit"] {
+  background-color: transparent !important;
+  border: 2px solid #facc15 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #facc15 !important;
+}
+
+html.alto-contraste form button[type="submit"]:focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+}
+
+html.alto-contraste form button[type="submit"] svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste *:focus-visible {
+  outline: 3px solid #facc15 !important;
+  outline-offset: 2px !important;
+}
+
+html.alto-contraste .topbar-privacy-btn {
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-acc-btn,
+html.alto-contraste .crasp-a11y-circle-btn {
+  border: 1.5px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-user-badge {
+  border: 1.5px solid #ffffff !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-user-badge * {
+  color: #ffffff !important;
+}
+
+html.alto-contraste .topbar-logout-btn {
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-logout-btn svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .topbar-social-btn,
+html.alto-contraste .footer-social-btn {
+  border: 1.5px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-social-btn svg,
+html.alto-contraste .footer-social-btn svg {
+  color: #facc15 !important;
+  fill: #facc15 !important;
+}
+
+html.alto-contraste .topbar-auth-btn {
+  border: 1.5px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .topbar-auth-btn svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .footer-map-btn,
+html.alto-contraste .footer-info-btn {
+  border: 1.5px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .footer-map-btn svg,
+html.alto-contraste .footer-info-btn svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste .partner-badge {
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste .form-error-notice {
+  background-color: transparent !important;
+  border: 1px solid #f87171 !important;
+  color: #fca5a5 !important;
+}
+
+html.alto-contraste .form-success-icon {
+  background-color: transparent !important;
+  border: 2px solid #4ade80 !important;
+  color: #4ade80 !important;
+}
+
+html.alto-contraste #perguntas {
+  background-color: #000000 !important;
+}
+
+html.alto-contraste #perguntas #faq-heading {
+  color: #ffffff !important;
+}
+
+html.alto-contraste #perguntas > div > div {
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+html.alto-contraste #faq-accordion-list > div {
+  border-color: #ffffff !important;
+}
+
+html.alto-contraste #faq-accordion-list button {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+html.alto-contraste #faq-accordion-list button span {
+  color: #ffffff !important;
+}
+
+html.alto-contraste #faq-accordion-list button:hover span,
+html.alto-contraste #faq-accordion-list button:focus-visible span {
+  color: #facc15 !important;
+}
+
+html.alto-contraste #faq-accordion-list button div {
+  background-color: transparent !important;
+  border: 1.5px solid #facc15 !important;
+}
+
+html.alto-contraste #faq-accordion-list button div svg {
+  color: #facc15 !important;
+}
+
+html.alto-contraste #faq-accordion-list p {
+  color: #ffffff !important;
+}
+
+html.alto-contraste #perguntas button[aria-controls="faq-accordion-list"] {
+  border: 2px solid #facc15 !important;
+  color: #facc15 !important;
+  background-color: transparent !important;
+}
+
+html.alto-contraste #perguntas button[aria-controls="faq-accordion-list"] * {
+  color: #facc15 !important;
+}
+
+html.alto-contraste [vw] {
+  filter: none !important;
+}
+
+html.alto-contraste [vw] *:not([vw-access-button]):not([vw-access-button] *):not(#vlibras-button):not(
+  #vlibras-button *
+) {
+  background-color: transparent !important;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

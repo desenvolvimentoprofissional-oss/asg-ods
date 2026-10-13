@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://asg.ods.crasp.org.br/sitemap.xml
+Sitemap: https://asg-ods.ai.studio/sitemap.xml

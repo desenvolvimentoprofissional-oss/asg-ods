@@ -1,0 +1,45 @@
+import { metodologiaData } from '../../constants/metodologia';
+import { Card } from '../ui/Card';
+import { Badge } from '../ui/Badge';
+
+type OptionItem = (typeof metodologiaData.implementation.options)[number];
+
+export function ImplementationCard({ option }: { option: OptionItem }) {
+  return (
+    <Card hoverable className="p-6 flex flex-col">
+      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-800 mb-6">
+        {option.icon && <option.icon size={24} />}
+      </div>
+      <h3 className="text-lg font-bold text-gray-900 mb-3">{option.title}</h3>
+      <p className="text-sm text-gray-600 leading-relaxed flex-1">{option.desc}</p>
+      <div className="mt-6 flex justify-end">
+        <Badge variant="blue-light">{option.badge}</Badge>
+      </div>
+    </Card>
+  );
+}
+
+export function MetodologiaImplementation() {
+  return (
+    <section className="bg-gray-50 py-12 md:py-16">
+      <div className="crasp-page-container">
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-blue-900">
+              {metodologiaData.implementation.title}
+            </h2>
+          </div>
+          <p className="mb-6 text-lg text-gray-600 leading-relaxed">
+            {metodologiaData.implementation.description}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {metodologiaData.implementation.options.map((option, idx) => (
+              <ImplementationCard key={idx} option={option} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

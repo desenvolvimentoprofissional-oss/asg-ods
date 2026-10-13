@@ -1,0 +1,48 @@
+{
+  "name": "react-example",
+  "homepage": "https://asg-ods.ai.studio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && tsx scripts/inject-sri.ts",
+    "preview": "vite preview",
+    "start": "node server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "check:metrics": "tsx scripts/check-metrics.ts",
+    "codigofonte": "tsx scripts/generate-codigofonte.ts",
+    "lint": "tsc --noEmit && tsx scripts/check-metrics.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "firebase-admin": "^14.5.0",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.38.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.13.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/supertest": "^7.2.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "supertest": "^7.3.1",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.23.15",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "vitest": "^5.0.3"
+  }
+}

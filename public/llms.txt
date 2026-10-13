@@ -1,0 +1,11 @@
+# Componente Curricular de ASG e ODS
+
+> Portal do CRA-SP para adesão de Instituições de Educação Superior.
+
+## Páginas
+
+- [Home](https://asg-ods.ai.studio/)
+- [Chancela Institucional](https://asg-ods.ai.studio/chancela)
+- [Metodologia Dinâmica](https://asg-ods.ai.studio/metodologia)
+- [Objetivos de Aprendizagem](https://asg-ods.ai.studio/trilha)
+- [Manifestação de Interesse](https://asg-ods.ai.studio/registro-interesse)

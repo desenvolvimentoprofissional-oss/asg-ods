@@ -1,0 +1,17 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:crasp.org.br:portal:asg-ods",
+      "displayName": "Componente Curricular de ASG e ODS - CRA-SP",
+      "type": "application/agent-card+json",
+      "url": "https://asg-ods.ai.studio/",
+      "capabilities": ["EducacaoCorporativa", "GestaoASG", "ODS", "AdesaoIES"],
+      "description": "Componente Curricular sobre Agenda ASG e ODS do Conselho Regional de Administração de São Paulo (CRA-SP).",
+      "representativeQueries": [
+        "como aderir ao componente curricular ASG e ODS do CRA-SP",
+        "manifestação de interesse componente curricular administração sustentável"
+      ]
+    }
+  ]
+}
