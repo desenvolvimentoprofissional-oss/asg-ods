@@ -66,6 +66,7 @@ export function InterestRegistrationPage() {
   } | null>(null);
 
   useEffect(() => {
+    document.title = 'Manifestação de Interesse | CRA-SP';
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 

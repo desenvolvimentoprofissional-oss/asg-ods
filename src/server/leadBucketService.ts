@@ -84,6 +84,37 @@ interface SavePartParams {
   leadBytes: number;
 }
 
+interface BucketDocRefs {
+  indexRef: FirebaseFirestore.DocumentReference;
+  docRef: FirebaseFirestore.DocumentReference;
+  vaultRef: FirebaseFirestore.DocumentReference;
+}
+
+function handleExistingBucket(
+  tx: FirebaseFirestore.Transaction,
+  refs: BucketDocRefs,
+  p: SavePartParams,
+  snap: FirebaseFirestore.DocumentSnapshot,
+  meta: { docId: string; hash: string; leadId: string }
+): { done: boolean; success: boolean; duplicate: boolean; docId: string } {
+  const { isDup, canFit } = checkBucketFit(snap.data() as BucketData, meta.hash, p.leadBytes);
+  if (isDup) {
+    const existing = (snap.data()?.manifestacoes || []).find(
+      (m: Record<string, unknown>) => ((m?.emailHash as string) || '') === meta.hash
+    );
+    const existingLeadId = (existing?.leadId as string) || meta.leadId;
+    tx.set(refs.indexRef, { criadoEm: new Date().toISOString(), parte: meta.docId, leadId: existingLeadId });
+    return { done: true, success: false, duplicate: true, docId: existingLeadId };
+  }
+  if (canFit) {
+    const bucketPayload = buildBucketPayload(p.partNum, snap.data() as BucketData, p.opLead);
+    const indexData = { criadoEm: new Date().toISOString(), parte: meta.docId, leadId: meta.leadId };
+    writeDualRecords(tx, refs, { indexData, vaultLead: p.vaultLead, bucketPayload });
+    return { done: true, success: true, duplicate: false, docId: meta.leadId };
+  }
+  return { done: false, success: false, duplicate: false, docId: '' };
+}
+
 async function trySaveLeadInPart(
   db: Firestore,
   p: SavePartParams
@@ -92,8 +123,7 @@ async function trySaveLeadInPart(
   const docRef = db.collection('leads_adesao').doc(docId);
   const hash = getEmailHash(p.email);
   const indexRef = db.collection('leads_unicidade').doc(hash);
-  const rawId = (p.opLead.leadId as string) || (p.opLead.id as string);
-  const leadId = rawId || `lead_${crypto.randomUUID()}`;
+  const leadId = (p.opLead.leadId as string) || (p.opLead.id as string) || `lead_${crypto.randomUUID()}`;
   const refs = { indexRef, docRef, vaultRef: db.collection('vault_leads').doc(leadId) };
 
   return db.runTransaction(async (tx) => {
@@ -101,25 +131,13 @@ async function trySaveLeadInPart(
       return { done: true, success: false, duplicate: true, docId: '' };
     }
     const snap = await tx.get(docRef);
-    const indexData = { criadoEm: new Date().toISOString(), parte: docId, leadId };
-
     if (!snap.exists) {
       const bucketPayload = buildBucketPayload(p.partNum, null, p.opLead);
+      const indexData = { criadoEm: new Date().toISOString(), parte: docId, leadId };
       writeDualRecords(tx, refs, { indexData, vaultLead: p.vaultLead, bucketPayload });
       return { done: true, success: true, duplicate: false, docId: leadId };
     }
-
-    const { isDup, canFit } = checkBucketFit(snap.data() as BucketData, hash, p.leadBytes);
-    if (isDup) {
-      tx.set(indexRef, indexData);
-      return { done: true, success: false, duplicate: true, docId: '' };
-    }
-    if (canFit) {
-      const bucketPayload = buildBucketPayload(p.partNum, snap.data() as BucketData, p.opLead);
-      writeDualRecords(tx, refs, { indexData, vaultLead: p.vaultLead, bucketPayload });
-      return { done: true, success: true, duplicate: false, docId: leadId };
-    }
-    return { done: false, success: false, duplicate: false, docId: '' };
+    return handleExistingBucket(tx, refs, p, snap, { docId, hash, leadId });
   });
 }
 

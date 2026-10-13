@@ -15,22 +15,20 @@ import { buildVaultRecord, buildOperationalRecord } from './src/server/vaultServ
 export { sanitizeErrorMessage, MAX_BUCKET_BYTES } from './src/server/leadBucketService.ts';
 export { applySecurityHeaders } from './src/server/securityHeaders.ts';
 
-function readFirebaseConfig(): { projectId: string; dbId?: string } {
-  let projectId = process.env.FIREBASE_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || 'asg-ods';
-  let dbId = process.env.FIRESTORE_DATABASE_ID;
-  if (!fs.existsSync('firebase-applet-config.json')) {
-    return { projectId, dbId };
-  }
+function loadConfigFile(): { projectId?: string; firestoreDatabaseId?: string } {
   try {
-    const raw = fs.readFileSync('firebase-applet-config.json', 'utf8');
-    const cfg = JSON.parse(raw);
-    return {
-      projectId: cfg.projectId || projectId,
-      dbId: cfg.firestoreDatabaseId || dbId,
-    };
+    return JSON.parse(fs.readFileSync('firebase-applet-config.json', 'utf8'));
   } catch {
-    return { projectId, dbId };
+    return {};
   }
+}
+
+function readFirebaseConfig(): { projectId: string; dbId?: string } {
+  const cfg = loadConfigFile();
+  const envDb = process.env.FIRESTORE_DATABASE_ID;
+  const projectId = process.env.FIREBASE_PROJECT_ID || cfg.projectId || 'asg-ods';
+  const dbId = envDb && envDb !== '(default)' ? envDb : cfg.firestoreDatabaseId || envDb;
+  return { projectId, dbId };
 }
 
 function initFirestoreInstance(): Firestore | null {

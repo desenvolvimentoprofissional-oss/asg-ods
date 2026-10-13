@@ -27,7 +27,7 @@ export const signatories: Signatory[] = [
       'missão promover a sinergia e o fortalecimento das escolas de Administração e Gestão, ' +
       'estimulando a formação de líderes competentes e comprometidos com um mundo economicamente ' +
       'viável, socialmente justo e ambientalmente equilibrado.',
-    imgClass: 'max-h-[50px] max-w-[160px]',
+    imgClass: 'max-h-[60px] max-w-[195px] scale-[1.12]',
   },
   {
     name: 'Instituto Ethos',
@@ -54,7 +54,7 @@ export const signatories: Signatory[] = [
     filterStyle:
       'brightness(0) invert(18%) sepia(90%) saturate(2800%) hue-rotate(205deg) ' +
       'brightness(95%) contrast(110%)',
-    imgClass: 'max-h-[52px] max-w-[170px]',
+    imgClass: 'max-h-[62px] max-w-[205px] scale-[1.32]',
   },
   {
     name: 'PRME',

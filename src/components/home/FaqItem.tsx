@@ -58,7 +58,8 @@ function FaqItemButton(props: {
 }) {
   const btnClass =
     'flex items-center justify-between w-full py-6 group text-left cursor-pointer ' +
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 rounded-lg';
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-800 ' +
+    'focus-visible:ring-offset-2 rounded-lg';
 
   return (
     <button

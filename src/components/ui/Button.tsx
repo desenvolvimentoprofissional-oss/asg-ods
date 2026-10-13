@@ -12,8 +12,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const buttonStyles = (variant: ButtonVariant = 'primary', size: ButtonSize = 'md', className: string = '') => {
   const baseStyles =
-    'inline-flex items-center justify-center gap-2 font-semibold transition-all ' +
-    'focus:outline-none disabled:opacity-50 disabled:pointer-events-none';
+    'inline-flex items-center justify-center gap-2 font-semibold transition-all focus:outline-none ' +
+    'focus-visible:ring-2 focus-visible:ring-blue-800 focus-visible:ring-offset-2 disabled:opacity-50 ' +
+    'disabled:pointer-events-none';
   
   const variants = {
     primary: "bg-blue-800 text-white shadow-sm hover:bg-blue-900 rounded-full",

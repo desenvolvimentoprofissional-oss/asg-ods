@@ -12,7 +12,11 @@ export const inputClass =
 export const labelClass = 'block text-sm font-semibold text-gray-700 mb-1';
 
 export function formatPhone(val: string): string {
-  const clean = val.replace(/\D/g, '').slice(0, 11);
+  let clean = val.replace(/\D/g, '');
+  if (clean.length > 11 && clean.startsWith('55')) {
+    clean = clean.slice(2);
+  }
+  clean = clean.slice(0, 11);
   if (clean.length <= 2) return clean ? `(${clean}` : '';
   if (clean.length <= 6) return `(${clean.slice(0, 2)}) ${clean.slice(2)}`;
   if (clean.length <= 10) {
