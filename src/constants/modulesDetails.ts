@@ -160,12 +160,6 @@ export const detailsMod6: ModuleDetail[] = [
     time: '1h',
   },
   {
-    bloom: 'Compreender',
-    verb: 'Comparar',
-    obj: 'Comparar os objetivos dos frameworks e normas: GRI vs. SASB/IFRS.',
-    time: '1h',
-  },
-  {
     bloom: 'Aplicar',
     verb: 'Adequar',
     obj: 'Adequar dados de uma empresa fictícia aos indicadores básicos (GRI ou SASB).',

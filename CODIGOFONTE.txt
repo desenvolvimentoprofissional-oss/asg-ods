@@ -1561,7 +1561,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
 | `server.ts` | `executeLeadCreation` | 129 | 28 | 20 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `evaluateFunctionNode` | 84 | 25 | 15 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 144 | 27 | 15 | 6 | 6 | CONFORME |
+| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 145 | 27 | 15 | 6 | 6 | CONFORME |
 | `server.ts` | `rateLimiter` | 98 | 22 | 14 | 6 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
@@ -1572,7 +1572,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
 | `server.ts` | `readFirebaseConfig` | 26 | 7 | 5 | 6 | 4 | CONFORME |
 | `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 80 | 6 | 5 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `handleExistingBucket` | 93 | 24 | 13 | 5 | 4 | CONFORME |
+| `src/server/leadBucketService.ts` | `handleExistingBucket` | 94 | 24 | 13 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
@@ -1736,7 +1736,12 @@ ARQUIVO: index.html
     />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="sr-only">
+        <h1>Componente Curricular de ASG e ODS</h1>
+        <h2>Conselho Regional de Administração de São Paulo (CRA-SP)</h2>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
@@ -2742,7 +2747,7 @@ export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
 app.use(applySecurityHeaders);
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '15kb' }));
 
 export function handleJsonSyntaxError(err: unknown, _req: Request, res: Response, next: NextFunction): void {
   const isSyntax = err instanceof SyntaxError && 'status' in err && (err as { status: number }).status === 400;
@@ -4253,7 +4258,7 @@ export function PhoneInput({ telefone, setTelefone }: { telefone: string; setTel
         autoComplete="tel"
         value={telefone}
         onChange={(e) => setTelefone(formatPhone(e.target.value))}
-        maxLength={15}
+        maxLength={20}
         className={inputClass}
       />
     </div>
@@ -7484,12 +7489,6 @@ export const detailsMod6: ModuleDetail[] = [
     time: '1h',
   },
   {
-    bloom: 'Compreender',
-    verb: 'Comparar',
-    obj: 'Comparar os objetivos dos frameworks e normas: GRI vs. SASB/IFRS.',
-    time: '1h',
-  },
-  {
     bloom: 'Aplicar',
     verb: 'Adequar',
     obj: 'Adequar dados de uma empresa fictícia aos indicadores básicos (GRI ou SASB).',
@@ -8543,7 +8542,8 @@ export function getEmailHash(email: string): string {
 
 export function sanitizeErrorMessage(rawMsg: string): string {
   return rawMsg
-    .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '[REDACTED_EMAIL]')
+    .slice(0, 2000)
+    .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, '[REDACTED_EMAIL]')
     .replace(/\(?\d{2}\)?\s?\d{4,5}-?\d{4}/g, '[REDACTED_PHONE]')
     .replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[REDACTED_CPF]')
     .replace(/leads_adesao\/[a-zA-Z0-9_-]+/g, 'leads_adesao/[REDACTED_DOC]');

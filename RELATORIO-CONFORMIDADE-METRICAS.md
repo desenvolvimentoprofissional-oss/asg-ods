@@ -36,7 +36,7 @@
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
 | `server.ts` | `executeLeadCreation` | 129 | 28 | 20 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `evaluateFunctionNode` | 84 | 25 | 15 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 144 | 27 | 15 | 6 | 6 | CONFORME |
+| `src/server/leadBucketService.ts` | `writeLeadToBucket` | 145 | 27 | 15 | 6 | 6 | CONFORME |
 | `server.ts` | `rateLimiter` | 98 | 22 | 14 | 6 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
@@ -47,7 +47,7 @@
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
 | `server.ts` | `readFirebaseConfig` | 26 | 7 | 5 | 6 | 4 | CONFORME |
 | `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 80 | 6 | 5 | 6 | 5 | CONFORME |
-| `src/server/leadBucketService.ts` | `handleExistingBucket` | 93 | 24 | 13 | 5 | 4 | CONFORME |
+| `src/server/leadBucketService.ts` | `handleExistingBucket` | 94 | 24 | 13 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |

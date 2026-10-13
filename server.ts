@@ -52,7 +52,7 @@ export const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
 app.use(applySecurityHeaders);
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '15kb' }));
 
 export function handleJsonSyntaxError(err: unknown, _req: Request, res: Response, next: NextFunction): void {
   const isSyntax = err instanceof SyntaxError && 'status' in err && (err as { status: number }).status === 400;

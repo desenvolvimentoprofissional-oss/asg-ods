@@ -22,7 +22,8 @@ export function getEmailHash(email: string): string {
 
 export function sanitizeErrorMessage(rawMsg: string): string {
   return rawMsg
-    .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '[REDACTED_EMAIL]')
+    .slice(0, 2000)
+    .replace(/[^\s@]+@[^\s@]+\.[^\s@]+/g, '[REDACTED_EMAIL]')
     .replace(/\(?\d{2}\)?\s?\d{4,5}-?\d{4}/g, '[REDACTED_PHONE]')
     .replace(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/g, '[REDACTED_CPF]')
     .replace(/leads_adesao\/[a-zA-Z0-9_-]+/g, 'leads_adesao/[REDACTED_DOC]');

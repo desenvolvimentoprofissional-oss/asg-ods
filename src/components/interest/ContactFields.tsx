@@ -90,7 +90,7 @@ export function PhoneInput({ telefone, setTelefone }: { telefone: string; setTel
         autoComplete="tel"
         value={telefone}
         onChange={(e) => setTelefone(formatPhone(e.target.value))}
-        maxLength={15}
+        maxLength={20}
         className={inputClass}
       />
     </div>
