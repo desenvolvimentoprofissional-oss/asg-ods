@@ -1,0 +1,15 @@
+REAUDITORIA ASG-ODS — 3baf58e
+
+Relatório detalhado: 25 páginas, oito capítulos, nota técnica 8,5/10.
+Código auditado: 3baf58e04238ca61a386a03e39e0932de430693a.
+Base: 9a126c65ba902e19b31bc695be0ccc172df7167f.
+Data da auditoria: 13/10/2026, America/Sao_Paulo.
+
+PDF: leitura formatada. Word: revisão e comentários. Markdown: texto com títulos.
+pareceres/: relatos originais por escopo. evidencias/: logs, JSONs, capturas e probes.
+SHA256.json: integridade de todos os arquivos do pacote, exceto o próprio manifesto.
+
+As validações são locais. npm ci foi validado com --dry-run e falhou por EUSAGE, sem instalação limpa concluída.
+Não houve gravação em banco ou teste invasivo de produção.
+Os probes usam os caminhos e parâmetros da sessão; confira-os antes de reproduzir em outro ambiente.
+Este relatório é separado da documentação descritiva anterior de 40 páginas.
