@@ -10,8 +10,8 @@ export function FontActionButton({
   title: string;
 }) {
   const cls =
-    'crasp-a11y-circle-btn w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full inline-flex ' +
-    'items-center justify-center font-bold text-[10px] sm:text-[11px] leading-none ' +
+    'crasp-a11y-circle-btn w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full inline-flex ' +
+    'items-center justify-center font-bold text-[0.625rem] sm:text-[0.6875rem] leading-none ' +
     'tracking-tight border border-current/35 bg-current/14 text-inherit ' +
     'hover:bg-current/22 hover:border-current/50 transition-all cursor-pointer ' +
     'focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
@@ -31,9 +31,9 @@ export function FontSizeResetButton({
   onClick: () => void;
 }) {
   const base =
-    'crasp-a11y-circle-btn crasp-a11y-btn-reset w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full ' +
-    'inline-flex items-center justify-center font-semibold text-[10px] sm:text-[11px] leading-none ' +
-    'tracking-tight text-inherit transition-all cursor-pointer focus-visible:outline-2 ' +
+    'crasp-a11y-circle-btn crasp-a11y-btn-reset w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full ' +
+    'inline-flex items-center justify-center font-semibold text-[0.625rem] sm:text-[0.6875rem] ' +
+    'leading-none tracking-tight text-inherit transition-all cursor-pointer focus-visible:outline-2 ' +
     'focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
 
   const stateClass = active

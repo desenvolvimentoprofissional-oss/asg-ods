@@ -1,5 +1,6 @@
 export interface Signatory {
   name: string;
+  href: string;
   logo: string;
   description: string;
   filterStyle?: string;
@@ -10,6 +11,7 @@ export interface Signatory {
 export const signatories: Signatory[] = [
   {
     name: 'CRA-SP',
+    href: 'https://crasp.gov.br/',
     logo: '/imgs/partners/crasp.svg',
     description:
       'O Conselho Regional de Administração de São Paulo é uma autarquia federal pertencente ao ' +
@@ -21,6 +23,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'ANGRAD',
+    href: 'https://angrad.org.br/',
     logo: '/imgs/partners/angrad.png',
     description:
       'A Associação Nacional dos Cursos de Graduação em Administração é uma entidade que tem como ' +
@@ -31,6 +34,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'Instituto Ethos',
+    href: 'https://www.ethos.org.br/',
     logo: '/imgs/partners/ethos.png',
     description:
       'O Instituto Ethos é uma organização da sociedade civil brasileira pioneira na mobilização ' +
@@ -44,6 +48,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'IBGC',
+    href: 'https://www.ibgc.org.br/',
     logo: '/imgs/partners/ibgc.png',
     description:
       'O Instituto Brasileiro de Governança Corporativa é uma organização da sociedade civil ' +
@@ -58,6 +63,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'PRME',
+    href: 'https://prmebrasil.org/',
     logo: '/imgs/partners/prme.png',
     description:
       'O Principles for Responsible Management Education é uma iniciativa apoiada pelas Nações ' +

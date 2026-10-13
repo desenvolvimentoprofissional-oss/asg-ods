@@ -17,7 +17,7 @@
     "clean": "rm -rf dist",
     "check:metrics": "tsx scripts/check-metrics.ts",
     "codigofonte": "tsx scripts/generate-codigofonte.ts",
-    "lint": "tsc --noEmit && tsx scripts/check-metrics.ts"
+    "lint": "eslint . && tsc --noEmit && tsx scripts/check-metrics.ts"
   },
   "dependencies": {
     "express": "^5.2.1",
@@ -30,6 +30,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.1.14",
     "@types/express": "^5.0.6",
     "@types/node": "^22.14.0",
@@ -38,10 +39,13 @@
     "@types/supertest": "^7.2.1",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.21",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "supertest": "^7.3.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.23.15",
     "typescript": "~5.8.2",
+    "typescript-eslint": "^8.71.2",
     "vite": "^6.2.0",
     "vitest": "^5.0.3"
   }

@@ -2,7 +2,7 @@
 
 **Data da Auditoria:** 2026-10-13  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
-**Escopo Total Inspecionado:** 90 arquivos (aplicação, testes e scripts)  
+**Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
 **Membros Executáveis Avaliados:** 485  
 
 ## 1. Matriz de Conformidade Normativa
@@ -30,7 +30,7 @@
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 55 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 58 | 19 | 12 | 7 | 9 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 13 | 9 | 7 | 7 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
@@ -51,9 +51,9 @@
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 75 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 78 | 17 | 8 | 5 | 6 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 34 | 10 | 7 | 5 | 4 | CONFORME |
-| `src/server/securityHeaders.ts` | `anonymous` | 84 | 8 | 5 | 5 | 6 | CONFORME |
+| `src/server/securityHeaders.ts` | `anonymous` | 87 | 8 | 5 | 5 | 6 | CONFORME |
 | `scripts/metrics-runner.ts` | `validateFunctionLimits` | 55 | 12 | 4 | 5 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `isSkippableLogicLine` | 174 | 5 | 3 | 5 | 4 | CONFORME |
 | `src/components/home/FaqAccordion.tsx` | `FaqAccordion` | 84 | 30 | 21 | 4 | 3 | CONFORME |

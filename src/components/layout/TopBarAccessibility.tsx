@@ -42,7 +42,7 @@ export function ContrastButton({
   onToggle: () => void;
 }) {
   const base =
-    'crasp-a11y-circle-btn crasp-a11y-btn-contrast w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full ' +
+    'crasp-a11y-circle-btn crasp-a11y-btn-contrast w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full ' +
     'inline-flex items-center justify-center text-inherit transition-all cursor-pointer ' +
     'focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
 
@@ -85,7 +85,16 @@ export const PrivacyButton = forwardRef<HTMLButtonElement, { onClick: () => void
   }
 );
 
-export function TopBarAccessibility(props: TopBarAccessibilityProps) {
+export function TopBarAccessibility({
+  isHighContrast,
+  onToggleHighContrast,
+  fontSizeScale,
+  onIncreaseFontSize,
+  onDecreaseFontSize,
+  onResetFontSize,
+  privacyButtonRef,
+  onPrivacyClick,
+}: TopBarAccessibilityProps) {
   return (
     <div className="flex items-center gap-2 sm:gap-4">
       <div
@@ -97,16 +106,16 @@ export function TopBarAccessibility(props: TopBarAccessibilityProps) {
           Acessibilidade
         </span>
         <div className="crasp-a11y-actions flex shrink-0 flex-nowrap items-center gap-1 sm:gap-1.5">
-          <ContrastButton isHighContrast={props.isHighContrast} onToggle={props.onToggleHighContrast} />
+          <ContrastButton isHighContrast={isHighContrast} onToggle={onToggleHighContrast} />
           <TopBarFontSizeButtons
-            scale={props.fontSizeScale}
-            onIncreaseFontSize={props.onIncreaseFontSize}
-            onDecreaseFontSize={props.onDecreaseFontSize}
-            onResetFontSize={props.onResetFontSize}
+            scale={fontSizeScale}
+            onIncreaseFontSize={onIncreaseFontSize}
+            onDecreaseFontSize={onDecreaseFontSize}
+            onResetFontSize={onResetFontSize}
           />
         </div>
       </div>
-      <PrivacyButton ref={props.privacyButtonRef} onClick={props.onPrivacyClick} />
+      <PrivacyButton ref={privacyButtonRef} onClick={onPrivacyClick} />
     </div>
   );
 }

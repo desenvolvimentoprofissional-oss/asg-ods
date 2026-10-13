@@ -21,7 +21,7 @@ export function ImplementationCard({ option }: { option: OptionItem }) {
 
 export function MetodologiaImplementation() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16">
+    <section id="flexibilidade-de-implementacao" className="bg-gray-50 py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">

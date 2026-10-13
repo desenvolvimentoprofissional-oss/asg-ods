@@ -1,15 +1,15 @@
 export const footerLinks = {
   chancela: [
-    { name: 'ANGRAD', href: '/chancela' },
-    { name: 'CRA-SP', href: '/chancela' },
-    { name: 'ETHOS', href: '/chancela' },
-    { name: 'IBGC', href: '/chancela' },
-    { name: 'PRME', href: '/chancela' },
+    { name: 'ANGRAD', href: 'https://angrad.org.br/' },
+    { name: 'CRA-SP', href: 'https://crasp.gov.br/' },
+    { name: 'ETHOS', href: 'https://www.ethos.org.br/' },
+    { name: 'IBGC', href: 'https://www.ibgc.org.br/' },
+    { name: 'PRME', href: 'https://prmebrasil.org/' },
   ],
   metodologia: [
-    { name: 'Por que "Dinâmica"?', href: '/metodologia' },
-    { name: 'Formatos de Aprendizagem', href: '/metodologia' },
-    { name: 'Flexibilidade de Implementação', href: '/metodologia' },
+    { name: 'Por que "Dinâmica"?', href: '/metodologia#por-que-dinamica' },
+    { name: 'Formatos de Aprendizagem', href: '/metodologia#formatos-de-aprendizagem' },
+    { name: 'Flexibilidade de Implementação', href: '/metodologia#flexibilidade-de-implementacao' },
   ],
   espacoDocente: [
     { name: 'Histórico da RSC e do ASG', href: '/trilha#modulo-1' },

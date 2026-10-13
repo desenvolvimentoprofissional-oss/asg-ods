@@ -7,7 +7,17 @@ export interface SignatoryCardProps {
 
 export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
   return (
-    <div className="h-full bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+    <a
+      href={sig.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Acessar página oficial: ${sig.name} (abre em nova aba)`}
+      className={
+        'block h-full bg-white p-6 rounded-xl border border-gray-100 ' +
+        'hover:shadow-md transition-shadow focus-visible:outline-none ' +
+        'focus-visible:ring-2 focus-visible:ring-blue-600'
+      }
+    >
       <div className="h-16 mb-5 flex items-center justify-center">
         <img
           src={sig.logo}
@@ -20,6 +30,6 @@ export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
       <p className="text-sm text-gray-600 leading-relaxed text-center">
         {sig.description}
       </p>
-    </div>
+    </a>
   );
 };

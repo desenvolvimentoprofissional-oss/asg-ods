@@ -17,7 +17,7 @@ export function PillarCard({ pillar }: { pillar: PillarItem }) {
 
 export function MetodologiaPillars() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16">
+    <section id="por-que-dinamica" className="bg-gray-50 py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">

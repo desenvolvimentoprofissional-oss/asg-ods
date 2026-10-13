@@ -21,7 +21,7 @@ export function FormatItemCard({ format }: { format: FormatItem }) {
 
 export function MetodologiaFormats() {
   return (
-    <section className="bg-white py-12 md:py-16">
+    <section id="formatos-de-aprendizagem" className="bg-white py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">

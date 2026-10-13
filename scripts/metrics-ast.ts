@@ -168,13 +168,13 @@ function isComment(trimmed: string): boolean {
 }
 
 function isOpeningBraceLine(trimmed: string): boolean {
-  return /^[\{\(\[]$/.test(trimmed) || isSignatureBraceLine(trimmed);
+  return /^[{([]$/.test(trimmed) || isSignatureBraceLine(trimmed);
 }
 
 function isSkippableLogicLine(trimmed: string, isStart: boolean): boolean {
   if (!trimmed || isComment(trimmed)) return true;
   if (isStart && isOpeningBraceLine(trimmed)) return true;
-  return /^[\}\)\];,]+$/.test(trimmed);
+  return /^[})\];,]+$/.test(trimmed);
 }
 
 export function getLogicLines(node: ts.Node, sourceFile: ts.SourceFile): number {

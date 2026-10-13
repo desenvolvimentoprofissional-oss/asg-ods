@@ -8,10 +8,12 @@ const BINARY_EXTENSIONS = new Set([
 ]);
 
 const ALLOWED_ROOT_FILES = new Set([
+  '.env.example',
   '.firebaserc',
   '.gitignore',
   'AGENTS.MD',
   'RELATORIO-CONFORMIDADE-METRICAS.md',
+  'eslint.config.js',
   'firebase-blueprint.json',
   'firebase.json',
   'firestore.rules',

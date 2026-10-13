@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { footerLinks } from '../../constants/footer';
 import { FooterContactBar } from './FooterContactBar';
 import { FooterAddress } from './FooterAddress';
-import {
-  YouTubeIcon,
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  XIcon,
-} from './TopBarSocial';
+import { TOPBAR_SOCIAL_ITEMS } from './TopBarSocial';
 
 function InfoIcon() {
   return (
@@ -31,14 +25,6 @@ function InfoIcon() {
     </svg>
   );
 }
-
-const SOCIAL_ITEMS = [
-  { href: 'https://youtube.com/crasp', label: 'YouTube do CRA-SP', Icon: YouTubeIcon },
-  { href: 'https://facebook.com/crasp', label: 'Facebook do CRA-SP', Icon: FacebookIcon },
-  { href: 'https://instagram.com/crasp', label: 'Instagram do CRA-SP', Icon: InstagramIcon },
-  { href: 'https://linkedin.com/company/crasp', label: 'LinkedIn do CRA-SP', Icon: LinkedinIcon },
-  { href: 'https://twitter.com/crasp', label: 'X do CRA-SP', Icon: XIcon },
-];
 
 function FooterLinkItem({ link }: { link: { name: string; href: string } }) {
   if (link.href.startsWith('http')) {
@@ -82,7 +68,7 @@ function LinksColumn({
 function FooterSocialIcons() {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {SOCIAL_ITEMS.map(({ href, label, Icon }) => (
+      {TOPBAR_SOCIAL_ITEMS.map(({ href, label, Icon }) => (
         <a
           key={label}
           href={href}

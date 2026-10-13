@@ -45,7 +45,7 @@ export function HomeHeroBackground() {
 
 function HomeHeroTitle() {
   return (
-    <h1 className="text-5xl leading-tight text-white sm:text-6xl drop-shadow-md">
+    <h1 className="text-4xl leading-tight text-white sm:text-5xl drop-shadow-md">
       <span className="font-bold sm:font-[750]">
         Componente<br />Curricular de<br />
       </span>
@@ -92,7 +92,7 @@ export function HomeHero() {
   return (
     <section aria-label="Banner Principal" className="relative h-[600px] w-full overflow-hidden bg-gray-100">
       <HomeHeroBackground />
-      <div className="crasp-page-container relative flex h-full items-center py-10 pb-16 z-10">
+      <div className="crasp-page-container relative flex h-full items-center pt-6 pb-20 z-10">
         <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <HomeHeroContent />
         </div>

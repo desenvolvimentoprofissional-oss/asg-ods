@@ -19,16 +19,13 @@ export const PublicLayout = () => {
     document.title = PAGE_TITLES[location.pathname] || 'Componente Curricular de ASG e ODS | CRA-SP';
     if (location.hash) {
       const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     } else {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, location.key]);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-gray-900 flex flex-col">

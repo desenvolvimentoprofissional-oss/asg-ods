@@ -1,3 +1,16 @@
+ARQUIVO: .env.example
+APP_URL="MY_APP_URL"
+FIREBASE_API_KEY=""
+FIREBASE_AUTH_DOMAIN=""
+FIREBASE_PROJECT_ID=""
+FIREBASE_STORAGE_BUCKET=""
+FIREBASE_MESSAGING_SENDER_ID=""
+FIREBASE_APP_ID=""
+FIRESTORE_DATABASE_ID=""
+HMAC_PEPPER_KEY="YOUR_HMAC_PEPPER_KEY"
+VAULT_ENCRYPTION_KEY="YOUR_32_BYTE_VAULT_ENCRYPTION_KEY"
+
+============================================================
 ARQUIVO: .firebaserc
 {
   "projects": {
@@ -16,6 +29,7 @@ coverage/
 .env*
 !.env.example
 firebase-applet-config.json
+.aistudio/
 
 ============================================================
 ARQUIVO: AGENTS.MD
@@ -1527,7 +1541,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 
 **Data da Auditoria:** 2026-10-13  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
-**Escopo Total Inspecionado:** 90 arquivos (aplicação, testes e scripts)  
+**Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
 **Membros Executáveis Avaliados:** 485  
 
 ## 1. Matriz de Conformidade Normativa
@@ -1555,7 +1569,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 55 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 58 | 19 | 12 | 7 | 9 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 13 | 9 | 7 | 7 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
@@ -1576,9 +1590,9 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 75 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 78 | 17 | 8 | 5 | 6 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 34 | 10 | 7 | 5 | 4 | CONFORME |
-| `src/server/securityHeaders.ts` | `anonymous` | 84 | 8 | 5 | 5 | 6 | CONFORME |
+| `src/server/securityHeaders.ts` | `anonymous` | 87 | 8 | 5 | 5 | 6 | CONFORME |
 | `scripts/metrics-runner.ts` | `validateFunctionLimits` | 55 | 12 | 4 | 5 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `isSkippableLogicLine` | 174 | 5 | 3 | 5 | 4 | CONFORME |
 | `src/components/home/FaqAccordion.tsx` | `FaqAccordion` | 84 | 30 | 21 | 4 | 3 | CONFORME |
@@ -1588,6 +1602,34 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*
+
+============================================================
+ARQUIVO: eslint.config.js
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
+
+export default tseslint.config(
+  {
+    ignores: ['dist/**', 'build/**', 'node_modules/**', 'coverage/**', '.aistudio/**'],
+  },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    files: ['**/*.{ts,tsx}'],
+    plugins: {
+      'react-hooks': reactHooks,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+    },
+  }
+);
 
 ============================================================
 ARQUIVO: firebase-blueprint.json
@@ -1774,7 +1816,7 @@ ARQUIVO: package.json
     "clean": "rm -rf dist",
     "check:metrics": "tsx scripts/check-metrics.ts",
     "codigofonte": "tsx scripts/generate-codigofonte.ts",
-    "lint": "tsc --noEmit && tsx scripts/check-metrics.ts"
+    "lint": "eslint . && tsc --noEmit && tsx scripts/check-metrics.ts"
   },
   "dependencies": {
     "express": "^5.2.1",
@@ -1787,6 +1829,7 @@ ARQUIVO: package.json
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.1.14",
     "@types/express": "^5.0.6",
     "@types/node": "^22.14.0",
@@ -1795,10 +1838,13 @@ ARQUIVO: package.json
     "@types/supertest": "^7.2.1",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.21",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "supertest": "^7.3.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.23.15",
     "typescript": "~5.8.2",
+    "typescript-eslint": "^8.71.2",
     "vite": "^6.2.0",
     "vitest": "^5.0.3"
   }
@@ -1950,10 +1996,12 @@ const BINARY_EXTENSIONS = new Set([
 ]);
 
 const ALLOWED_ROOT_FILES = new Set([
+  '.env.example',
   '.firebaserc',
   '.gitignore',
   'AGENTS.MD',
   'RELATORIO-CONFORMIDADE-METRICAS.md',
+  'eslint.config.js',
   'firebase-blueprint.json',
   'firebase.json',
   'firestore.rules',
@@ -2292,13 +2340,13 @@ function isComment(trimmed: string): boolean {
 }
 
 function isOpeningBraceLine(trimmed: string): boolean {
-  return /^[\{\(\[]$/.test(trimmed) || isSignatureBraceLine(trimmed);
+  return /^[{([]$/.test(trimmed) || isSignatureBraceLine(trimmed);
 }
 
 function isSkippableLogicLine(trimmed: string, isStart: boolean): boolean {
   if (!trimmed || isComment(trimmed)) return true;
   if (isStart && isOpeningBraceLine(trimmed)) return true;
-  return /^[\}\)\];,]+$/.test(trimmed);
+  return /^[})\];,]+$/.test(trimmed);
 }
 
 export function getLogicLines(node: ts.Node, sourceFile: ts.SourceFile): number {
@@ -3078,8 +3126,6 @@ declare global {
 export const VLIBRAS_VERSION = '7.12.2';
 export const VLIBRAS_URL = 'https://vlibras.gov.br/app';
 export const VLIBRAS_SCRIPT_URL = 'https://vlibras.gov.br/app/vlibras-plugin.js';
-export const VLIBRAS_SRI_HASH =
-  'sha384-SCil2fuOCOLYO4bxpOW27F/feaFLCHDhc5HDDad0feHUHd0Q6+Wye9e/8Lq09Vqj';
 
 function instantiateVLibrasWidget(): boolean {
   const isWrapperPresent = document.getElementById('vlibras-access-wrapper') !== null;
@@ -3099,7 +3145,6 @@ function createScriptTag(
   script.id = 'vlibras-script';
   script.src = src;
   script.setAttribute('data-version', VLIBRAS_VERSION);
-  script.integrity = VLIBRAS_SRI_HASH;
   script.crossOrigin = 'anonymous';
   script.async = true;
   script.onload = onLoad;
@@ -3954,7 +3999,7 @@ export function HomeHeroBackground() {
 
 function HomeHeroTitle() {
   return (
-    <h1 className="text-5xl leading-tight text-white sm:text-6xl drop-shadow-md">
+    <h1 className="text-4xl leading-tight text-white sm:text-5xl drop-shadow-md">
       <span className="font-bold sm:font-[750]">
         Componente<br />Curricular de<br />
       </span>
@@ -4001,7 +4046,7 @@ export function HomeHero() {
   return (
     <section aria-label="Banner Principal" className="relative h-[600px] w-full overflow-hidden bg-gray-100">
       <HomeHeroBackground />
-      <div className="crasp-page-container relative flex h-full items-center py-10 pb-16 z-10">
+      <div className="crasp-page-container relative flex h-full items-center pt-6 pb-20 z-10">
         <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <HomeHeroContent />
         </div>
@@ -4868,13 +4913,7 @@ import { Link } from 'react-router-dom';
 import { footerLinks } from '../../constants/footer';
 import { FooterContactBar } from './FooterContactBar';
 import { FooterAddress } from './FooterAddress';
-import {
-  YouTubeIcon,
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  XIcon,
-} from './TopBarSocial';
+import { TOPBAR_SOCIAL_ITEMS } from './TopBarSocial';
 
 function InfoIcon() {
   return (
@@ -4896,14 +4935,6 @@ function InfoIcon() {
     </svg>
   );
 }
-
-const SOCIAL_ITEMS = [
-  { href: 'https://youtube.com/crasp', label: 'YouTube do CRA-SP', Icon: YouTubeIcon },
-  { href: 'https://facebook.com/crasp', label: 'Facebook do CRA-SP', Icon: FacebookIcon },
-  { href: 'https://instagram.com/crasp', label: 'Instagram do CRA-SP', Icon: InstagramIcon },
-  { href: 'https://linkedin.com/company/crasp', label: 'LinkedIn do CRA-SP', Icon: LinkedinIcon },
-  { href: 'https://twitter.com/crasp', label: 'X do CRA-SP', Icon: XIcon },
-];
 
 function FooterLinkItem({ link }: { link: { name: string; href: string } }) {
   if (link.href.startsWith('http')) {
@@ -4947,7 +4978,7 @@ function LinksColumn({
 function FooterSocialIcons() {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {SOCIAL_ITEMS.map(({ href, label, Icon }) => (
+      {TOPBAR_SOCIAL_ITEMS.map(({ href, label, Icon }) => (
         <a
           key={label}
           href={href}
@@ -5451,16 +5482,13 @@ export const PublicLayout = () => {
     document.title = PAGE_TITLES[location.pathname] || 'Componente Curricular de ASG e ODS | CRA-SP';
     if (location.hash) {
       const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     } else {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, location.key]);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-white text-gray-900 flex flex-col">
@@ -5633,7 +5661,7 @@ export function ContrastButton({
   onToggle: () => void;
 }) {
   const base =
-    'crasp-a11y-circle-btn crasp-a11y-btn-contrast w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full ' +
+    'crasp-a11y-circle-btn crasp-a11y-btn-contrast w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full ' +
     'inline-flex items-center justify-center text-inherit transition-all cursor-pointer ' +
     'focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
 
@@ -5676,7 +5704,16 @@ export const PrivacyButton = forwardRef<HTMLButtonElement, { onClick: () => void
   }
 );
 
-export function TopBarAccessibility(props: TopBarAccessibilityProps) {
+export function TopBarAccessibility({
+  isHighContrast,
+  onToggleHighContrast,
+  fontSizeScale,
+  onIncreaseFontSize,
+  onDecreaseFontSize,
+  onResetFontSize,
+  privacyButtonRef,
+  onPrivacyClick,
+}: TopBarAccessibilityProps) {
   return (
     <div className="flex items-center gap-2 sm:gap-4">
       <div
@@ -5688,16 +5725,16 @@ export function TopBarAccessibility(props: TopBarAccessibilityProps) {
           Acessibilidade
         </span>
         <div className="crasp-a11y-actions flex shrink-0 flex-nowrap items-center gap-1 sm:gap-1.5">
-          <ContrastButton isHighContrast={props.isHighContrast} onToggle={props.onToggleHighContrast} />
+          <ContrastButton isHighContrast={isHighContrast} onToggle={onToggleHighContrast} />
           <TopBarFontSizeButtons
-            scale={props.fontSizeScale}
-            onIncreaseFontSize={props.onIncreaseFontSize}
-            onDecreaseFontSize={props.onDecreaseFontSize}
-            onResetFontSize={props.onResetFontSize}
+            scale={fontSizeScale}
+            onIncreaseFontSize={onIncreaseFontSize}
+            onDecreaseFontSize={onDecreaseFontSize}
+            onResetFontSize={onResetFontSize}
           />
         </div>
       </div>
-      <PrivacyButton ref={props.privacyButtonRef} onClick={props.onPrivacyClick} />
+      <PrivacyButton ref={privacyButtonRef} onClick={onPrivacyClick} />
     </div>
   );
 }
@@ -5716,8 +5753,8 @@ export function FontActionButton({
   title: string;
 }) {
   const cls =
-    'crasp-a11y-circle-btn w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full inline-flex ' +
-    'items-center justify-center font-bold text-[10px] sm:text-[11px] leading-none ' +
+    'crasp-a11y-circle-btn w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full inline-flex ' +
+    'items-center justify-center font-bold text-[0.625rem] sm:text-[0.6875rem] leading-none ' +
     'tracking-tight border border-current/35 bg-current/14 text-inherit ' +
     'hover:bg-current/22 hover:border-current/50 transition-all cursor-pointer ' +
     'focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
@@ -5737,9 +5774,9 @@ export function FontSizeResetButton({
   onClick: () => void;
 }) {
   const base =
-    'crasp-a11y-circle-btn crasp-a11y-btn-reset w-7 h-7 sm:w-[30px] sm:h-[30px] rounded-full ' +
-    'inline-flex items-center justify-center font-semibold text-[10px] sm:text-[11px] leading-none ' +
-    'tracking-tight text-inherit transition-all cursor-pointer focus-visible:outline-2 ' +
+    'crasp-a11y-circle-btn crasp-a11y-btn-reset w-7 h-7 sm:w-[1.875rem] sm:h-[1.875rem] rounded-full ' +
+    'inline-flex items-center justify-center font-semibold text-[0.625rem] sm:text-[0.6875rem] ' +
+    'leading-none tracking-tight text-inherit transition-all cursor-pointer focus-visible:outline-2 ' +
     'focus-visible:outline-white focus-visible:outline-offset-2 shrink-0';
 
   const stateClass = active
@@ -5978,7 +6015,7 @@ export function FormatItemCard({ format }: { format: FormatItem }) {
 
 export function MetodologiaFormats() {
   return (
-    <section className="bg-white py-12 md:py-16">
+    <section id="formatos-de-aprendizagem" className="bg-white py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">
@@ -6023,7 +6060,7 @@ export function ImplementationCard({ option }: { option: OptionItem }) {
 
 export function MetodologiaImplementation() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16">
+    <section id="flexibilidade-de-implementacao" className="bg-gray-50 py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">
@@ -6067,7 +6104,7 @@ export function PillarCard({ pillar }: { pillar: PillarItem }) {
 
 export function MetodologiaPillars() {
   return (
-    <section className="bg-gray-50 py-12 md:py-16">
+    <section id="por-que-dinamica" className="bg-gray-50 py-12 md:py-16">
       <div className="crasp-page-container">
         <div>
           <div className="flex items-center justify-between mb-6">
@@ -6367,7 +6404,17 @@ export interface SignatoryCardProps {
 
 export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
   return (
-    <div className="h-full bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow">
+    <a
+      href={sig.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Acessar página oficial: ${sig.name} (abre em nova aba)`}
+      className={
+        'block h-full bg-white p-6 rounded-xl border border-gray-100 ' +
+        'hover:shadow-md transition-shadow focus-visible:outline-none ' +
+        'focus-visible:ring-2 focus-visible:ring-blue-600'
+      }
+    >
       <div className="h-16 mb-5 flex items-center justify-center">
         <img
           src={sig.logo}
@@ -6380,7 +6427,7 @@ export const SignatoryCard: React.FC<SignatoryCardProps> = ({ sig }) => {
       <p className="text-sm text-gray-600 leading-relaxed text-center">
         {sig.description}
       </p>
-    </div>
+    </a>
   );
 };
 
@@ -6932,6 +6979,7 @@ export const SectionHeader = ({
 ARQUIVO: src/constants/chancela.ts
 export interface Signatory {
   name: string;
+  href: string;
   logo: string;
   description: string;
   filterStyle?: string;
@@ -6942,6 +6990,7 @@ export interface Signatory {
 export const signatories: Signatory[] = [
   {
     name: 'CRA-SP',
+    href: 'https://crasp.gov.br/',
     logo: '/imgs/partners/crasp.svg',
     description:
       'O Conselho Regional de Administração de São Paulo é uma autarquia federal pertencente ao ' +
@@ -6953,6 +7002,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'ANGRAD',
+    href: 'https://angrad.org.br/',
     logo: '/imgs/partners/angrad.png',
     description:
       'A Associação Nacional dos Cursos de Graduação em Administração é uma entidade que tem como ' +
@@ -6963,6 +7013,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'Instituto Ethos',
+    href: 'https://www.ethos.org.br/',
     logo: '/imgs/partners/ethos.png',
     description:
       'O Instituto Ethos é uma organização da sociedade civil brasileira pioneira na mobilização ' +
@@ -6976,6 +7027,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'IBGC',
+    href: 'https://www.ibgc.org.br/',
     logo: '/imgs/partners/ibgc.png',
     description:
       'O Instituto Brasileiro de Governança Corporativa é uma organização da sociedade civil ' +
@@ -6990,6 +7042,7 @@ export const signatories: Signatory[] = [
   },
   {
     name: 'PRME',
+    href: 'https://prmebrasil.org/',
     logo: '/imgs/partners/prme.png',
     description:
       'O Principles for Responsible Management Education é uma iniciativa apoiada pelas Nações ' +
@@ -7095,16 +7148,16 @@ export const CURSO_OPTIONS = [
 ARQUIVO: src/constants/footer.ts
 export const footerLinks = {
   chancela: [
-    { name: 'ANGRAD', href: '/chancela' },
-    { name: 'CRA-SP', href: '/chancela' },
-    { name: 'ETHOS', href: '/chancela' },
-    { name: 'IBGC', href: '/chancela' },
-    { name: 'PRME', href: '/chancela' },
+    { name: 'ANGRAD', href: 'https://angrad.org.br/' },
+    { name: 'CRA-SP', href: 'https://crasp.gov.br/' },
+    { name: 'ETHOS', href: 'https://www.ethos.org.br/' },
+    { name: 'IBGC', href: 'https://www.ibgc.org.br/' },
+    { name: 'PRME', href: 'https://prmebrasil.org/' },
   ],
   metodologia: [
-    { name: 'Por que "Dinâmica"?', href: '/metodologia' },
-    { name: 'Formatos de Aprendizagem', href: '/metodologia' },
-    { name: 'Flexibilidade de Implementação', href: '/metodologia' },
+    { name: 'Por que "Dinâmica"?', href: '/metodologia#por-que-dinamica' },
+    { name: 'Formatos de Aprendizagem', href: '/metodologia#formatos-de-aprendizagem' },
+    { name: 'Flexibilidade de Implementação', href: '/metodologia#flexibilidade-de-implementacao' },
   ],
   espacoDocente: [
     { name: 'Histórico da RSC e do ASG', href: '/trilha#modulo-1' },
@@ -8703,6 +8756,9 @@ export const CSP_HEADER = [
     "'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' " +
     "'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' " +
     "'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' " +
+    "'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' " +
+    "'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' " +
+    "'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' " +
     'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
     'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "style-src-attr 'unsafe-inline'",
@@ -8775,7 +8831,7 @@ export function applySecurityHeaders(_req: Request, res: Response, next: NextFun
   res.setHeader('Content-Security-Policy', getActiveCsp());
 
   const origSet = res.setHeader.bind(res);
-  res.setHeader = (name: string, value: any) => {
+  res.setHeader = (name: string, value: number | string | readonly string[]) => {
     if (typeof name === 'string' && name.toLowerCase() === 'set-cookie') {
       const list = Array.isArray(value) ? value : [value];
       const secured = list.map(formatSecureCookie);

@@ -9,6 +9,9 @@ export const CSP_HEADER = [
     "'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' " +
     "'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' " +
     "'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' " +
+    "'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' " +
+    "'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' " +
+    "'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' " +
     'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
     'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "style-src-attr 'unsafe-inline'",
@@ -81,7 +84,7 @@ export function applySecurityHeaders(_req: Request, res: Response, next: NextFun
   res.setHeader('Content-Security-Policy', getActiveCsp());
 
   const origSet = res.setHeader.bind(res);
-  res.setHeader = (name: string, value: any) => {
+  res.setHeader = (name: string, value: number | string | readonly string[]) => {
     if (typeof name === 'string' && name.toLowerCase() === 'set-cookie') {
       const list = Array.isArray(value) ? value : [value];
       const secured = list.map(formatSecureCookie);
