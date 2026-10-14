@@ -607,8 +607,16 @@ html.alto-contraste #perguntas button[aria-controls="faq-accordion-list"] * {
   color: #facc15 !important;
 }
 
-html.alto-contraste [vw] {
+html.alto-contraste [vw],
+html.alto-contraste #vlibras-access-wrapper,
+html.alto-contraste #vlibras-app-root {
   filter: none !important;
+}
+
+html.alto-contraste #vlibras-app-root * {
+  background-color: revert !important;
+  color: revert !important;
+  border-color: revert !important;
 }
 
 html.alto-contraste [vw] *:not([vw-access-button]):not([vw-access-button] *):not(#vlibras-button):not(

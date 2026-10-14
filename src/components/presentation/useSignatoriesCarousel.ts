@@ -15,6 +15,10 @@ export function animateScroll(el: HTMLElement, target: number, duration: number,
   const t0 = performance.now();
 
   const frame = (t: number) => {
+    if (typeof document !== 'undefined' && el.contains(document.activeElement)) {
+      onEnd?.();
+      return;
+    }
     const p = Math.min((t - t0) / duration, 1);
     const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
     el.scrollLeft = start + change * ease;
@@ -25,11 +29,26 @@ export function animateScroll(el: HTMLElement, target: number, duration: number,
 }
 
 export function balanceScrollLoop(container: HTMLElement, singleSetWidth: number) {
+  if (typeof document !== 'undefined' && container.contains(document.activeElement)) return;
   const curr = container.scrollLeft;
   if (curr >= singleSetWidth * 2 - 10) {
     container.scrollLeft = curr - singleSetWidth;
   } else if (curr <= 10) {
     container.scrollLeft = curr + singleSetWidth;
+  }
+}
+
+export function ensureFocusedCardVisible(container: HTMLElement, target: HTMLElement | null) {
+  const card = target
+    ? (Array.from(container.children).find((c) => c.contains(target)) as HTMLElement)
+    : null;
+  if (!card) return;
+  const cardLeft = card.offsetLeft;
+  const cardRight = cardLeft + card.offsetWidth;
+  if (cardLeft < container.scrollLeft) {
+    container.scrollLeft = cardLeft;
+  } else if (cardRight > container.scrollLeft + container.clientWidth) {
+    container.scrollLeft = cardRight - container.clientWidth;
   }
 }
 
@@ -43,7 +62,10 @@ export function useCarouselAutoLoop(
       const { singleSetWidth } = calcDimensions(ref.current, itemCount);
       ref.current.scrollLeft = singleSetWidth;
     }
-    const timer = setInterval(onTick, 5000);
+    const timer = setInterval(() => {
+      if (typeof document !== 'undefined' && ref.current?.contains(document.activeElement)) return;
+      onTick();
+    }, 5000);
     return () => clearInterval(timer);
   }, [ref, itemCount, onTick]);
 }
@@ -101,16 +123,25 @@ export function useScrollWatcher(
     }, 150);
   }, [ref, itemCount, isScrollingRef]);
 
-  return { activeIndex, handleScroll };
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    ensureFocusedCardVisible(ref.current, e.target as HTMLElement);
+  }, [ref]);
+
+  return { activeIndex, handleScroll, handleFocus };
 }
 
 export function useSignatoriesCarousel(itemCount: number) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { smoothScrollTo, isScrollingRef } = useSmoothScroll(scrollContainerRef);
-  const { activeIndex, handleScroll } = useScrollWatcher(scrollContainerRef, itemCount, isScrollingRef);
+  const { activeIndex, handleScroll, handleFocus } = useScrollWatcher(
+    scrollContainerRef,
+    itemCount,
+    isScrollingRef
+  );
   const { scrollToDot, scroll } = useCarouselNavigation(scrollContainerRef, itemCount, smoothScrollTo);
 
   useCarouselAutoLoop(scrollContainerRef, itemCount, useCallback(() => scroll('right'), [scroll]));
 
-  return { scrollContainerRef, activeIndex, handleScroll, scrollToDot, scroll };
+  return { scrollContainerRef, activeIndex, handleScroll, handleFocus, scrollToDot, scroll };
 }

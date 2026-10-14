@@ -29,7 +29,7 @@ export function SignatoriesCarouselHeader({
 }
 
 export const SignatoriesCarousel: React.FC = () => {
-  const { scrollContainerRef, activeIndex, handleScroll, scrollToDot, scroll } =
+  const { scrollContainerRef, activeIndex, handleScroll, handleFocus, scrollToDot, scroll } =
     useSignatoriesCarousel(signatories.length);
 
   return (
@@ -39,6 +39,7 @@ export const SignatoriesCarousel: React.FC = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
+          onFocus={handleFocus}
           className={
             'flex gap-6 py-4 px-1 -mx-1 overflow-x-auto ' +
             '[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'

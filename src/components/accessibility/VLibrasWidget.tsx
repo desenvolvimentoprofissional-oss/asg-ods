@@ -11,6 +11,8 @@ declare global {
 export const VLIBRAS_VERSION = '7.12.2';
 export const VLIBRAS_URL = 'https://vlibras.gov.br/app';
 export const VLIBRAS_SCRIPT_URL = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+export const VLIBRAS_INTEGRITY =
+  'sha384-SCil2fuOCOLYO4bxpOW27F/feaFLCHDhc5HDDad0feHUHd0Q6+Wye9e/8Lq09Vqj';
 
 function instantiateVLibrasWidget(): boolean {
   const isWrapperPresent = document.getElementById('vlibras-access-wrapper') !== null;
@@ -30,6 +32,7 @@ function createScriptTag(
   script.id = 'vlibras-script';
   script.src = src;
   script.setAttribute('data-version', VLIBRAS_VERSION);
+  script.integrity = VLIBRAS_INTEGRITY;
   script.crossOrigin = 'anonymous';
   script.async = true;
   script.onload = onLoad;

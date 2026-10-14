@@ -12,6 +12,8 @@ export const CSP_HEADER = [
     "'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' " +
     "'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' " +
     "'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' " +
+    "'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' " +
+    "'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' " +
     'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
     'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "style-src-attr 'unsafe-inline'",
@@ -23,8 +25,10 @@ export const CSP_HEADER = [
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br " +
     'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br",
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br",
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -47,8 +51,10 @@ export const DEV_CSP_HEADER = [
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' ws: wss: http: https: https://*.googleapis.com https://*.firebaseio.com " +
     'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br",
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br",
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

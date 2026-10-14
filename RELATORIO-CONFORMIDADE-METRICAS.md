@@ -1,9 +1,9 @@
 # Relatório Oficial de Conformidade das Métricas do AGENTS.MD
 
-**Data da Auditoria:** 2026-10-13  
+**Data da Auditoria:** 2026-10-14  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
 **Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
-**Membros Executáveis Avaliados:** 485  
+**Membros Executáveis Avaliados:** 489  
 
 ## 1. Matriz de Conformidade Normativa
 
@@ -30,7 +30,7 @@
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 58 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 57 | 19 | 12 | 7 | 9 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 13 | 9 | 7 | 7 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
@@ -50,16 +50,16 @@
 | `src/server/leadBucketService.ts` | `handleExistingBucket` | 94 | 24 | 13 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `ensureFocusedCardVisible` | 41 | 13 | 10 | 5 | 4 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 78 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 77 | 17 | 8 | 5 | 6 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `frame` | 17 | 11 | 8 | 5 | 5 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 34 | 10 | 7 | 5 | 4 | CONFORME |
-| `src/server/securityHeaders.ts` | `anonymous` | 87 | 8 | 5 | 5 | 6 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `balanceScrollLoop` | 31 | 9 | 6 | 5 | 4 | CONFORME |
+| `src/server/securityHeaders.ts` | `anonymous` | 93 | 8 | 5 | 5 | 6 | CONFORME |
 | `scripts/metrics-runner.ts` | `validateFunctionLimits` | 55 | 12 | 4 | 5 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `isSkippableLogicLine` | 174 | 5 | 3 | 5 | 4 | CONFORME |
 | `src/components/home/FaqAccordion.tsx` | `FaqAccordion` | 84 | 30 | 21 | 4 | 3 | CONFORME |
-| `src/components/layout/HeaderMobileMenu.tsx` | `MobileMenuItem` | 9 | 32 | 20 | 4 | 4 | CONFORME |
-| `src/components/layout/HeaderDesktopNav.tsx` | `anonymous` | 9 | 22 | 18 | 4 | 4 | CONFORME |
-| `scripts/metrics-runner.ts` | `auditFile` | 110 | 19 | 13 | 4 | 3 | CONFORME |
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*

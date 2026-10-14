@@ -1539,10 +1539,10 @@ Para fins de rápida verificação, constituem invariantes fundamentais deste pr
 ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 # Relatório Oficial de Conformidade das Métricas do AGENTS.MD
 
-**Data da Auditoria:** 2026-10-13  
+**Data da Auditoria:** 2026-10-14  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
 **Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
-**Membros Executáveis Avaliados:** 485  
+**Membros Executáveis Avaliados:** 489  
 
 ## 1. Matriz de Conformidade Normativa
 
@@ -1569,7 +1569,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 
 | Arquivo | Função / Componente | Linha | Físicas | Lógicas | CC | Cognitiva | Status |
 |---|---|---|---|---|---|---|---|
-| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 58 | 19 | 12 | 7 | 9 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `collectDirectoryFiles` | 57 | 19 | 12 | 7 | 9 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 13 | 9 | 7 | 7 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
@@ -1589,16 +1589,16 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `src/server/leadBucketService.ts` | `handleExistingBucket` | 94 | 24 | 13 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `ensureFocusedCardVisible` | 41 | 13 | 10 | 5 | 4 | CONFORME |
 | `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
-| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 78 | 17 | 8 | 5 | 6 | CONFORME |
+| `scripts/generate-codigofonte.ts` | `getProjectFiles` | 77 | 17 | 8 | 5 | 6 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `frame` | 17 | 11 | 8 | 5 | 5 | CONFORME |
 | `server.ts` | `initFirestoreInstance` | 34 | 10 | 7 | 5 | 4 | CONFORME |
-| `src/server/securityHeaders.ts` | `anonymous` | 87 | 8 | 5 | 5 | 6 | CONFORME |
+| `src/components/presentation/useSignatoriesCarousel.ts` | `balanceScrollLoop` | 31 | 9 | 6 | 5 | 4 | CONFORME |
+| `src/server/securityHeaders.ts` | `anonymous` | 93 | 8 | 5 | 5 | 6 | CONFORME |
 | `scripts/metrics-runner.ts` | `validateFunctionLimits` | 55 | 12 | 4 | 5 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `isSkippableLogicLine` | 174 | 5 | 3 | 5 | 4 | CONFORME |
 | `src/components/home/FaqAccordion.tsx` | `FaqAccordion` | 84 | 30 | 21 | 4 | 3 | CONFORME |
-| `src/components/layout/HeaderMobileMenu.tsx` | `MobileMenuItem` | 9 | 32 | 20 | 4 | 4 | CONFORME |
-| `src/components/layout/HeaderDesktopNav.tsx` | `anonymous` | 9 | 22 | 18 | 4 | 4 | CONFORME |
-| `scripts/metrics-runner.ts` | `auditFile` | 110 | 19 | 13 | 4 | 3 | CONFORME |
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*
@@ -1691,7 +1691,7 @@ ARQUIVO: firebase.json
           { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'none'; script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src 'self' 'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' 'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' 'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' 'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br; worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self' https://aistudio.google.com https://*.google.com https://*.run.app https://ai.studio"
+            "value": "default-src 'none'; script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src 'self' 'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' 'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' 'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' 'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' 'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' 'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' 'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' 'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' 'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self' https://aistudio.google.com https://*.google.com https://*.run.app https://ai.studio"
           }
         ]
       }
@@ -1760,6 +1760,8 @@ ARQUIVO: index.html
     <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
     <link rel="preconnect" href="https://vlibras.gov.br" crossorigin />
     <link rel="dns-prefetch" href="https://vlibras.gov.br" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <link
       rel="preload"
       as="image"
@@ -3126,6 +3128,8 @@ declare global {
 export const VLIBRAS_VERSION = '7.12.2';
 export const VLIBRAS_URL = 'https://vlibras.gov.br/app';
 export const VLIBRAS_SCRIPT_URL = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+export const VLIBRAS_INTEGRITY =
+  'sha384-SCil2fuOCOLYO4bxpOW27F/feaFLCHDhc5HDDad0feHUHd0Q6+Wye9e/8Lq09Vqj';
 
 function instantiateVLibrasWidget(): boolean {
   const isWrapperPresent = document.getElementById('vlibras-access-wrapper') !== null;
@@ -3145,6 +3149,7 @@ function createScriptTag(
   script.id = 'vlibras-script';
   script.src = src;
   script.setAttribute('data-version', VLIBRAS_VERSION);
+  script.integrity = VLIBRAS_INTEGRITY;
   script.crossOrigin = 'anonymous';
   script.async = true;
   script.onload = onLoad;
@@ -6330,7 +6335,7 @@ export function SignatoriesCarouselHeader({
 }
 
 export const SignatoriesCarousel: React.FC = () => {
-  const { scrollContainerRef, activeIndex, handleScroll, scrollToDot, scroll } =
+  const { scrollContainerRef, activeIndex, handleScroll, handleFocus, scrollToDot, scroll } =
     useSignatoriesCarousel(signatories.length);
 
   return (
@@ -6340,6 +6345,7 @@ export const SignatoriesCarousel: React.FC = () => {
         <div
           ref={scrollContainerRef}
           onScroll={handleScroll}
+          onFocus={handleFocus}
           className={
             'flex gap-6 py-4 px-1 -mx-1 overflow-x-auto ' +
             '[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'
@@ -6450,6 +6456,10 @@ export function animateScroll(el: HTMLElement, target: number, duration: number,
   const t0 = performance.now();
 
   const frame = (t: number) => {
+    if (typeof document !== 'undefined' && el.contains(document.activeElement)) {
+      onEnd?.();
+      return;
+    }
     const p = Math.min((t - t0) / duration, 1);
     const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
     el.scrollLeft = start + change * ease;
@@ -6460,11 +6470,26 @@ export function animateScroll(el: HTMLElement, target: number, duration: number,
 }
 
 export function balanceScrollLoop(container: HTMLElement, singleSetWidth: number) {
+  if (typeof document !== 'undefined' && container.contains(document.activeElement)) return;
   const curr = container.scrollLeft;
   if (curr >= singleSetWidth * 2 - 10) {
     container.scrollLeft = curr - singleSetWidth;
   } else if (curr <= 10) {
     container.scrollLeft = curr + singleSetWidth;
+  }
+}
+
+export function ensureFocusedCardVisible(container: HTMLElement, target: HTMLElement | null) {
+  const card = target
+    ? (Array.from(container.children).find((c) => c.contains(target)) as HTMLElement)
+    : null;
+  if (!card) return;
+  const cardLeft = card.offsetLeft;
+  const cardRight = cardLeft + card.offsetWidth;
+  if (cardLeft < container.scrollLeft) {
+    container.scrollLeft = cardLeft;
+  } else if (cardRight > container.scrollLeft + container.clientWidth) {
+    container.scrollLeft = cardRight - container.clientWidth;
   }
 }
 
@@ -6478,7 +6503,10 @@ export function useCarouselAutoLoop(
       const { singleSetWidth } = calcDimensions(ref.current, itemCount);
       ref.current.scrollLeft = singleSetWidth;
     }
-    const timer = setInterval(onTick, 5000);
+    const timer = setInterval(() => {
+      if (typeof document !== 'undefined' && ref.current?.contains(document.activeElement)) return;
+      onTick();
+    }, 5000);
     return () => clearInterval(timer);
   }, [ref, itemCount, onTick]);
 }
@@ -6536,18 +6564,27 @@ export function useScrollWatcher(
     }, 150);
   }, [ref, itemCount, isScrollingRef]);
 
-  return { activeIndex, handleScroll };
+  const handleFocus = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    ensureFocusedCardVisible(ref.current, e.target as HTMLElement);
+  }, [ref]);
+
+  return { activeIndex, handleScroll, handleFocus };
 }
 
 export function useSignatoriesCarousel(itemCount: number) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { smoothScrollTo, isScrollingRef } = useSmoothScroll(scrollContainerRef);
-  const { activeIndex, handleScroll } = useScrollWatcher(scrollContainerRef, itemCount, isScrollingRef);
+  const { activeIndex, handleScroll, handleFocus } = useScrollWatcher(
+    scrollContainerRef,
+    itemCount,
+    isScrollingRef
+  );
   const { scrollToDot, scroll } = useCarouselNavigation(scrollContainerRef, itemCount, smoothScrollTo);
 
   useCarouselAutoLoop(scrollContainerRef, itemCount, useCallback(() => scroll('right'), [scroll]));
 
-  return { scrollContainerRef, activeIndex, handleScroll, scrollToDot, scroll };
+  return { scrollContainerRef, activeIndex, handleScroll, handleFocus, scrollToDot, scroll };
 }
 
 ============================================================
@@ -8299,8 +8336,16 @@ html.alto-contraste #perguntas button[aria-controls="faq-accordion-list"] * {
   color: #facc15 !important;
 }
 
-html.alto-contraste [vw] {
+html.alto-contraste [vw],
+html.alto-contraste #vlibras-access-wrapper,
+html.alto-contraste #vlibras-app-root {
   filter: none !important;
+}
+
+html.alto-contraste #vlibras-app-root * {
+  background-color: revert !important;
+  color: revert !important;
+  border-color: revert !important;
 }
 
 html.alto-contraste [vw] *:not([vw-access-button]):not([vw-access-button] *):not(#vlibras-button):not(
@@ -8759,6 +8804,8 @@ export const CSP_HEADER = [
     "'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' " +
     "'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' " +
     "'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' " +
+    "'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' " +
+    "'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' " +
     'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
     'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "style-src-attr 'unsafe-inline'",
@@ -8770,8 +8817,10 @@ export const CSP_HEADER = [
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br " +
     'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br",
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br",
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -8794,8 +8843,10 @@ export const DEV_CSP_HEADER = [
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' ws: wss: http: https: https://*.googleapis.com https://*.firebaseio.com " +
     'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br",
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br",
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
