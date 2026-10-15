@@ -10,7 +10,7 @@ export const faqsData = [
   },
   {
     icon: Puzzle,
-    q: 'Como integro este Componente AGS e ODS na minha grade curricular?',
+    q: 'Como integro este Componente ASG e ODS na minha grade curricular?',
     a:
       'O Componente Curricular de ASG e ODS foi desenhado de forma modular. Você pode adotar a ' +
       'carga horária integral de 24h com todos os objetivos de aprendizagem ou selecionar módulos específicos ' +

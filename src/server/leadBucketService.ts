@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import type { Firestore } from 'firebase-admin/firestore';
+import type { FirestoreDb, FirestoreTx, DocumentReference } from './firestoreClient.ts';
 
 export const MAX_BUCKET_BYTES = 943718;
 
@@ -60,11 +60,11 @@ function checkBucketFit(
 }
 
 function writeDualRecords(
-  tx: FirebaseFirestore.Transaction,
+  tx: FirestoreTx,
   refs: {
-    indexRef: FirebaseFirestore.DocumentReference;
-    docRef: FirebaseFirestore.DocumentReference;
-    vaultRef: FirebaseFirestore.DocumentReference;
+    indexRef: DocumentReference;
+    docRef: DocumentReference;
+    vaultRef: DocumentReference;
   },
   data: {
     indexData: Record<string, unknown>;
@@ -86,21 +86,21 @@ interface SavePartParams {
 }
 
 interface BucketDocRefs {
-  indexRef: FirebaseFirestore.DocumentReference;
-  docRef: FirebaseFirestore.DocumentReference;
-  vaultRef: FirebaseFirestore.DocumentReference;
+  indexRef: DocumentReference;
+  docRef: DocumentReference;
+  vaultRef: DocumentReference;
 }
 
 function handleExistingBucket(
-  tx: FirebaseFirestore.Transaction,
+  tx: FirestoreTx,
   refs: BucketDocRefs,
   p: SavePartParams,
-  snap: FirebaseFirestore.DocumentSnapshot,
+  snap: { exists: boolean; data: () => unknown },
   meta: { docId: string; hash: string; leadId: string }
 ): { done: boolean; success: boolean; duplicate: boolean; docId: string } {
   const { isDup, canFit } = checkBucketFit(snap.data() as BucketData, meta.hash, p.leadBytes);
   if (isDup) {
-    const existing = (snap.data()?.manifestacoes || []).find(
+    const existing = ((snap.data() as BucketData)?.manifestacoes || []).find(
       (m: Record<string, unknown>) => ((m?.emailHash as string) || '') === meta.hash
     );
     const existingLeadId = (existing?.leadId as string) || meta.leadId;
@@ -117,7 +117,7 @@ function handleExistingBucket(
 }
 
 async function trySaveLeadInPart(
-  db: Firestore,
+  db: FirestoreDb,
   p: SavePartParams
 ): Promise<{ done: boolean; success: boolean; duplicate: boolean; docId: string }> {
   const docId = `parte${p.partNum}`;
@@ -143,7 +143,7 @@ async function trySaveLeadInPart(
 }
 
 export async function writeLeadToBucket(
-  db: Firestore | null,
+  db: FirestoreDb | null,
   operationalLead: Record<string, unknown>,
   email: string,
   vaultLead: Record<string, unknown> | null = null

@@ -1,9 +1,9 @@
 # Relatório Oficial de Conformidade das Métricas do AGENTS.MD
 
-**Data da Auditoria:** 2026-10-14  
+**Data da Auditoria:** 2026-10-15  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
-**Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
-**Membros Executáveis Avaliados:** 489  
+**Escopo Total Inspecionado:** 92 arquivos (aplicação, testes e scripts)  
+**Membros Executáveis Avaliados:** 506  
 
 ## 1. Matriz de Conformidade Normativa
 
@@ -34,32 +34,32 @@
 | `src/components/presentation/PresentationMode.tsx` | `isInputFocused` | 23 | 13 | 10 | 7 | 2 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `formatPhone` | 14 | 13 | 9 | 7 | 7 | CONFORME |
 | `src/api/leadsService.ts` | `validateLeadResponse` | 18 | 10 | 6 | 7 | 7 | CONFORME |
-| `server.ts` | `executeLeadCreation` | 129 | 28 | 20 | 6 | 5 | CONFORME |
+| `server.ts` | `executeLeadCreation` | 101 | 28 | 20 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `evaluateFunctionNode` | 84 | 25 | 15 | 6 | 5 | CONFORME |
 | `src/server/leadBucketService.ts` | `writeLeadToBucket` | 145 | 27 | 15 | 6 | 6 | CONFORME |
-| `server.ts` | `rateLimiter` | 98 | 22 | 14 | 6 | 4 | CONFORME |
+| `server.ts` | `rateLimiter` | 70 | 22 | 14 | 6 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
 | `scripts/metrics-ast.ts` | `checkNesting` | 197 | 17 | 7 | 6 | 5 | CONFORME |
-| `src/components/interest/useInterestForm.ts` | `isFormValid` | 30 | 10 | 7 | 6 | 1 | CONFORME |
+| `src/components/interest/useInterestForm.ts` | `isFormValid` | 35 | 10 | 7 | 6 | 1 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 85 | 9 | 6 | 6 | 5 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `handleInterestError` | 36 | 10 | 6 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
-| `server.ts` | `readFirebaseConfig` | 26 | 7 | 5 | 6 | 4 | CONFORME |
 | `src/components/layout/PrivacyDialog.tsx` | `anonymous` | 80 | 6 | 5 | 6 | 5 | CONFORME |
 | `src/server/leadBucketService.ts` | `handleExistingBucket` | 94 | 24 | 13 | 5 | 4 | CONFORME |
 | `src/server/vaultService.ts` | `decryptVaultField` | 21 | 14 | 11 | 5 | 4 | CONFORME |
 | `scripts/metrics-runner.ts` | `walkDirectory` | 31 | 14 | 10 | 5 | 7 | CONFORME |
 | `src/components/presentation/useSignatoriesCarousel.ts` | `ensureFocusedCardVisible` | 41 | 13 | 10 | 5 | 4 | CONFORME |
-| `server.ts` | `handleJsonSyntaxError` | 57 | 13 | 9 | 5 | 3 | CONFORME |
+| `server.ts` | `handleJsonSyntaxError` | 29 | 13 | 9 | 5 | 3 | CONFORME |
 | `scripts/generate-codigofonte.ts` | `getProjectFiles` | 77 | 17 | 8 | 5 | 6 | CONFORME |
 | `src/components/presentation/useSignatoriesCarousel.ts` | `frame` | 17 | 11 | 8 | 5 | 5 | CONFORME |
-| `server.ts` | `initFirestoreInstance` | 34 | 10 | 7 | 5 | 4 | CONFORME |
 | `src/components/presentation/useSignatoriesCarousel.ts` | `balanceScrollLoop` | 31 | 9 | 6 | 5 | 4 | CONFORME |
-| `src/server/securityHeaders.ts` | `anonymous` | 93 | 8 | 5 | 5 | 6 | CONFORME |
+| `src/server/securityHeaders.ts` | `anonymous` | 86 | 8 | 5 | 5 | 6 | CONFORME |
 | `scripts/metrics-runner.ts` | `validateFunctionLimits` | 55 | 12 | 4 | 5 | 4 | CONFORME |
+| `src/server/firestoreClient.ts` | `resolveDatabaseId` | 65 | 6 | 4 | 5 | 4 | CONFORME |
 | `scripts/metrics-ast.ts` | `isSkippableLogicLine` | 174 | 5 | 3 | 5 | 4 | CONFORME |
 | `src/components/home/FaqAccordion.tsx` | `FaqAccordion` | 84 | 30 | 21 | 4 | 3 | CONFORME |
+| `src/components/layout/HeaderMobileMenu.tsx` | `MobileMenuItem` | 9 | 32 | 20 | 4 | 4 | CONFORME |
 
 ---
 *Relatório gerado automaticamente por `scripts/check-metrics.ts`.*

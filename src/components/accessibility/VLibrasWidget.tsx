@@ -40,7 +40,33 @@ function createScriptTag(
   return script;
 }
 
+let coepBridgeInstalled = false;
+
+function mapVlibrasIframeUrl(url: string): string {
+  return url.includes('/unity/index.html') ? '/api/vlibras-unity' : url;
+}
+
+function installVlibrasCoepIframeBridge(): void {
+  if (coepBridgeInstalled || typeof HTMLIFrameElement === 'undefined') return;
+  coepBridgeInstalled = true;
+  const origSetAttr = HTMLIFrameElement.prototype.setAttribute;
+  HTMLIFrameElement.prototype.setAttribute = function (name: string, val: string) {
+    const next = name.toLowerCase() === 'src' ? mapVlibrasIframeUrl(val) : val;
+    return origSetAttr.call(this, name, next);
+  };
+  const desc = Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype, 'src');
+  if (desc?.set) {
+    Object.defineProperty(HTMLIFrameElement.prototype, 'src', {
+      ...desc,
+      set(val: string) {
+        desc.set!.call(this, mapVlibrasIframeUrl(String(val)));
+      },
+    });
+  }
+}
+
 function injectVLibrasScript(onReady: () => void, onError: () => void) {
+  installVlibrasCoepIframeBridge();
   if (instantiateVLibrasWidget()) {
     onReady();
     return;

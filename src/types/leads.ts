@@ -16,7 +16,7 @@ export const LeadRegistrationInputSchema = z
     telefone: z
       .string()
       .trim()
-      .min(8, 'Telefone deve conter no mínimo 8 caracteres.')
+      .regex(/^\D*(?:\d\D*){10,11}$/, 'Telefone deve conter DDD e 8 ou 9 dígitos.')
       .max(30, 'Telefone deve conter no máximo 30 caracteres.'),
     instituicao: z
       .string()

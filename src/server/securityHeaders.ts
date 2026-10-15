@@ -3,7 +3,7 @@ import type { Request, Response, NextFunction } from 'express';
 export const CSP_HEADER = [
   "default-src 'none'",
   "script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' " +
-    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src 'self' " +
     "'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' " +
     "'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' " +
@@ -12,23 +12,18 @@ export const CSP_HEADER = [
     "'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' " +
     "'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' " +
     "'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' " +
-    "'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' " +
-    "'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' " +
-    'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src-attr 'unsafe-inline'",
   "font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com ' +
+    'https://cdn.jsdelivr.net https://images.unsplash.com ' +
     'https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app ' +
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net https://*.posthog.com',
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -39,22 +34,20 @@ export const CSP_HEADER = [
 export const DEV_CSP_HEADER = [
   "default-src 'none'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src-attr 'unsafe-inline'",
   "font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com ' +
+    'https://cdn.jsdelivr.net https://images.unsplash.com ' +
     'https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app ' +
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' ws: wss: http: https: https://*.googleapis.com https://*.firebaseio.com " +
-    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
-  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net https://*.posthog.com',
+  "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+  "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -101,3 +94,42 @@ export function applySecurityHeaders(_req: Request, res: Response, next: NextFun
 
   next();
 }
+
+export const VLIBRAS_UNITY_CSP = [
+  "default-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://vlibras.gov.br " +
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net",
+  "connect-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br " +
+    'https://cdn.jsdelivr.net https://*.posthog.com',
+  "worker-src 'self' blob:",
+  "frame-ancestors 'self' https://aistudio.google.com https://*.google.com https://*.run.app https://ai.studio",
+].join('; ');
+
+export const VLIBRAS_UNITY_HTML = [
+  '<!doctype html><html lang="pt-br"><head><meta charset="utf-8"/>',
+  '<base href="https://vlibras.gov.br/app/unity/"/>',
+  '<title>Unity WebGL Player | Vlibras</title>',
+  '<style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}',
+  '#gameContainer{width:100vw;height:100vh;background-color:transparent!important}',
+  'canvas{width:100%!important;height:100%!important}</style></head><body>',
+  '<div id="gameContainer"></div>',
+  '<script src="https://vlibras.gov.br/app/unity/unity-loader.js" crossorigin="anonymous"></script>',
+  '<script>',
+  '(function(){if(!window.UnityLoader)return;var o=window.UnityLoader.instantiate;',
+  'window.UnityLoader.instantiate=function(c,u,p){',
+  'var full=String(u).indexOf("http")===0?u:"https://vlibras.gov.br/app/unity/"+String(u);',
+  'return o.call(this,c,full,p);};})();',
+  '</script>',
+  '<script src="https://vlibras.gov.br/app/unity/index.js" crossorigin="anonymous"></script>',
+  '</body></html>',
+].join('');
+
+export function serveVlibrasUnityBridge(_req: Request, res: Response): void {
+  res.setHeader('Content-Security-Policy', VLIBRAS_UNITY_CSP);
+  res.setHeader('Cross-Origin-Embedder-Policy', 'credentialless');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.type('html').status(200).send(VLIBRAS_UNITY_HTML);
+}
+

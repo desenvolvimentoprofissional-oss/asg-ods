@@ -1542,7 +1542,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 **Data da Auditoria:** 2026-10-14  
 **Status:** 100% HOMOLOGADO E CONFORME (AUTO-AUDITADO)  
 **Escopo Total Inspecionado:** 91 arquivos (aplicação, testes e scripts)  
-**Membros Executáveis Avaliados:** 489  
+**Membros Executáveis Avaliados:** 491  
 
 ## 1. Matriz de Conformidade Normativa
 
@@ -1580,7 +1580,7 @@ ARQUIVO: RELATORIO-CONFORMIDADE-METRICAS.md
 | `scripts/metrics-ast.ts` | `visit` | 134 | 19 | 12 | 6 | 5 | CONFORME |
 | `src/components/presentation/PresentationMode.tsx` | `handleKeyDown` | 74 | 14 | 11 | 6 | 5 | CONFORME |
 | `scripts/metrics-ast.ts` | `checkNesting` | 197 | 17 | 7 | 6 | 5 | CONFORME |
-| `src/components/interest/useInterestForm.ts` | `isFormValid` | 30 | 10 | 7 | 6 | 1 | CONFORME |
+| `src/components/interest/useInterestForm.ts` | `isFormValid` | 35 | 10 | 7 | 6 | 1 | CONFORME |
 | `scripts/metrics-ast.ts` | `visit` | 85 | 9 | 6 | 6 | 5 | CONFORME |
 | `src/components/interest/interestFormUtils.ts` | `handleInterestError` | 36 | 10 | 6 | 6 | 5 | CONFORME |
 | `scripts/metrics-runner.ts` | `getNodeName` | 46 | 8 | 5 | 6 | 4 | CONFORME |
@@ -1691,7 +1691,7 @@ ARQUIVO: firebase.json
           { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'none'; script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src 'self' 'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' 'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' 'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' 'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' 'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' 'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' 'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' 'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' 'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self' https://aistudio.google.com https://*.google.com https://*.run.app https://ai.studio"
+            "value": "default-src 'none'; script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; style-src 'self' 'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' 'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' 'sha256-6yGv3aB3hfTEfPXLLsjWJS7qLg4GUsRrepEaeQbZIY0=' 'sha256-awytb91xnVLWJuWz5AwdV5dAJPERvSsx0KrWWhJuNnM=' 'sha256-K1YGCJ9Cg1Y7R6JLOf8v8m/fYMKl7z8n4H6C96EuRE4=' 'sha256-aONVQQvH1cFuvg38jkGtM/thDaulvTnuyax++NvB8kA=' 'sha256-8GWAUrRyaI3gREajBb5ihH3tKcnImvvB7k9KB2GodIg=' 'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' 'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net https://images.unsplash.com https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'self' https://aistudio.google.com https://*.google.com https://*.run.app https://ai.studio"
           }
         ]
       }
@@ -2903,9 +2903,10 @@ async function executeLeadCreation(data: LeadRegistrationInput) {
 export async function persistLead(body: unknown) {
   const validation = LeadRegistrationInputSchema.safeParse(body);
   if (!validation.success) {
+    const message = validation.error.issues[0]?.message || 'Dados inválidos.';
     return {
       status: 400,
-      body: { error: 'INVALID_ARGUMENT', message: 'Dados inválidos.', details: validation.error.format() },
+      body: { error: 'INVALID_ARGUMENT', message, details: validation.error.format() },
     };
   }
   return executeLeadCreation(validation.data);
@@ -4713,11 +4714,16 @@ const EMPTY_FIELDS: InterestFields = {
   observacoes: '',
 };
 
+export function isPhoneValid(telefone: string): boolean {
+  const digits = telefone.replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 11;
+}
+
 export function isFormValid(f: InterestFields): boolean {
   return Boolean(
     f.nome.trim() &&
     f.email.trim() &&
-    f.telefone.trim() &&
+    isPhoneValid(f.telefone) &&
     f.instituicao.trim() &&
     f.campus.trim() &&
     f.previsao.trim()
@@ -4738,6 +4744,14 @@ export function buildPayload(f: InterestFields) {
   };
 }
 
+export function getFormValidationError(f: InterestFields): string {
+  if (isFormValid(f)) return '';
+  if (f.telefone.trim() && !isPhoneValid(f.telefone)) {
+    return 'Telefone deve conter DDD e 8 ou 9 dígitos.';
+  }
+  return 'Por favor, preencha todos os campos obrigatórios.';
+}
+
 export function useInterestForm(props: {
   onSuccess: (data: { nome: string; instituicao: string }) => void;
 }) {
@@ -4751,9 +4765,9 @@ export function useInterestForm(props: {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!isFormValid(f)) {
-      return setError('Por favor, preencha todos os campos obrigatórios.');
-    }
+    const valError = getFormValidationError(f);
+    if (valError) return setError(valError);
+
     try {
       setIsLoading(true);
       setError('');
@@ -5004,7 +5018,7 @@ function SocialAndInfoRow() {
     <div className="mt-8 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
       <FooterSocialIcons />
       <a
-        href="https://crasp.gov.br/crasp/site/informacao-publica"
+        href="https://cra-sp.implanta.net.br/portaltransparencia/#publico/inicio"
         target="_blank"
         rel="noopener noreferrer"
         className={
@@ -6503,6 +6517,11 @@ export function useCarouselAutoLoop(
       const { singleSetWidth } = calcDimensions(ref.current, itemCount);
       ref.current.scrollLeft = singleSetWidth;
     }
+    const prefersReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
     const timer = setInterval(() => {
       if (typeof document !== 'undefined' && ref.current?.contains(document.activeElement)) return;
       onTick();
@@ -7108,7 +7127,7 @@ export const faqsData = [
   },
   {
     icon: Puzzle,
-    q: 'Como integro este Componente AGS e ODS na minha grade curricular?',
+    q: 'Como integro este Componente ASG e ODS na minha grade curricular?',
     a:
       'O Componente Curricular de ASG e ODS foi desenhado de forma modular. Você pode adotar a ' +
       'carga horária integral de 24h com todos os objetivos de aprendizagem ou selecionar módulos específicos ' +
@@ -8795,7 +8814,7 @@ import type { Request, Response, NextFunction } from 'express';
 export const CSP_HEADER = [
   "default-src 'none'",
   "script-src 'self' 'sha256-odqQAl+mDRYx0EimQD22jCjCTSuQWWuxw9SYzRQEmtE=' " +
-    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src 'self' " +
     "'sha256-eUb4QNOqGDF5+49sdjTMcZSJwJagVldqY68xFObUKcE=' " +
     "'sha256-h04C0gpDimXiWBLWwlLGzczqL/xm8ZfwdFYFhfwwy8c=' " +
@@ -8807,20 +8826,20 @@ export const CSP_HEADER = [
     "'sha256-PBwoLmsu1QaFX9J6Iu3ejl5amFwl1bKpKFonmXRf+k4=' " +
     "'sha256-EFV/fPX1TTTs5IcvHX6CpkZRPNfg8VM3kc6+YzWFva8=' " +
     'https://fonts.googleapis.com https://vlibras.gov.br https://*.vlibras.gov.br ' +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://cdn.jsdelivr.net',
   "style-src-attr 'unsafe-inline'",
   "font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com ' +
+    'https://cdn.jsdelivr.net https://images.unsplash.com ' +
     'https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app ' +
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://cdn.jsdelivr.net',
   "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://cdn.jsdelivr.net',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -8831,22 +8850,22 @@ export const CSP_HEADER = [
 export const DEV_CSP_HEADER = [
   "default-src 'none'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "style-src-attr 'unsafe-inline'",
   "font-src 'self' https://fonts.gstatic.com https://vlibras.gov.br " +
-    'https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "img-src 'self' blob: data: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/ https://images.unsplash.com ' +
+    'https://cdn.jsdelivr.net https://images.unsplash.com ' +
     'https://firebasestorage.googleapis.com https://crasp-frontend.vercel.app ' +
     'https://hackathonenangrad.espm.edu.br https://www.ethos.org.br https://ju.se',
   "connect-src 'self' ws: wss: http: https: https://*.googleapis.com https://*.firebaseio.com " +
-    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://vlibras.gov.br https://*.vlibras.gov.br https://cdn.jsdelivr.net',
   "frame-src 'self' https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://cdn.jsdelivr.net',
   "worker-src 'self' blob: https://vlibras.gov.br https://*.vlibras.gov.br " +
-    'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/',
+    'https://cdn.jsdelivr.net',
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -9102,7 +9121,7 @@ export const LeadRegistrationInputSchema = z
     telefone: z
       .string()
       .trim()
-      .min(8, 'Telefone deve conter no mínimo 8 caracteres.')
+      .regex(/^\D*(?:\d\D*){10,11}$/, 'Telefone deve conter DDD e 8 ou 9 dígitos.')
       .max(30, 'Telefone deve conter no máximo 30 caracteres.'),
     instituicao: z
       .string()

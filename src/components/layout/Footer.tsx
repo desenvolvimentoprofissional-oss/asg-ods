@@ -89,7 +89,7 @@ function SocialAndInfoRow() {
     <div className="mt-8 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
       <FooterSocialIcons />
       <a
-        href="https://crasp.gov.br/crasp/site/informacao-publica"
+        href="https://cra-sp.implanta.net.br/portaltransparencia/#publico/inicio"
         target="_blank"
         rel="noopener noreferrer"
         className={

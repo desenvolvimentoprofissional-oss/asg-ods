@@ -27,11 +27,16 @@ const EMPTY_FIELDS: InterestFields = {
   observacoes: '',
 };
 
+export function isPhoneValid(telefone: string): boolean {
+  const digits = telefone.replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 11;
+}
+
 export function isFormValid(f: InterestFields): boolean {
   return Boolean(
     f.nome.trim() &&
     f.email.trim() &&
-    f.telefone.trim() &&
+    isPhoneValid(f.telefone) &&
     f.instituicao.trim() &&
     f.campus.trim() &&
     f.previsao.trim()
@@ -52,6 +57,14 @@ export function buildPayload(f: InterestFields) {
   };
 }
 
+export function getFormValidationError(f: InterestFields): string {
+  if (isFormValid(f)) return '';
+  if (f.telefone.trim() && !isPhoneValid(f.telefone)) {
+    return 'Telefone deve conter DDD e 8 ou 9 dígitos.';
+  }
+  return 'Por favor, preencha todos os campos obrigatórios.';
+}
+
 export function useInterestForm(props: {
   onSuccess: (data: { nome: string; instituicao: string }) => void;
 }) {
@@ -65,9 +78,9 @@ export function useInterestForm(props: {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!isFormValid(f)) {
-      return setError('Por favor, preencha todos os campos obrigatórios.');
-    }
+    const valError = getFormValidationError(f);
+    if (valError) return setError(valError);
+
     try {
       setIsLoading(true);
       setError('');

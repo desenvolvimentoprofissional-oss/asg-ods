@@ -5,6 +5,20 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
+
+    match /leads_adesao/{parte} {
+      allow read: if parte.matches('^parte[0-9]+$');
+      allow write: if parte.matches('^parte[0-9]+$') && request.resource.data.numeroParte is number;
+    }
+
+    match /leads_unicidade/{hash} {
+      allow read: if hash.matches('^[a-f0-9]{64}$');
+      allow write: if hash.matches('^[a-f0-9]{64}$') && request.resource.data.parte is string;
+    }
+
+    match /vault_leads/{leadId} {
+      allow read: if leadId.matches('^lead_[a-zA-Z0-9_-]+$');
+      allow write: if leadId.matches('^lead_[a-zA-Z0-9_-]+$') && request.resource.data.leadId is string;
+    }
   }
 }
-

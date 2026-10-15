@@ -3,48 +3,20 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
-import { initializeApp, getApps } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import type { Firestore } from 'firebase-admin/firestore';
+import { initFirestoreClient } from './src/server/firestoreClient.ts';
+import type { FirestoreDb } from './src/server/firestoreClient.ts';
 import { LeadRegistrationInputSchema } from './src/types/leads.ts';
 import type { LeadRegistrationInput } from './src/types/leads.ts';
 import { writeLeadToBucket, sanitizeErrorMessage, getEmailHash } from './src/server/leadBucketService.ts';
-import { applySecurityHeaders } from './src/server/securityHeaders.ts';
+import { applySecurityHeaders, serveVlibrasUnityBridge } from './src/server/securityHeaders.ts';
 import { buildVaultRecord, buildOperationalRecord } from './src/server/vaultService.ts';
 
 export { sanitizeErrorMessage, MAX_BUCKET_BYTES } from './src/server/leadBucketService.ts';
 export { applySecurityHeaders } from './src/server/securityHeaders.ts';
 
-function loadConfigFile(): { projectId?: string; firestoreDatabaseId?: string } {
-  try {
-    return JSON.parse(fs.readFileSync('firebase-applet-config.json', 'utf8'));
-  } catch {
-    return {};
-  }
-}
+export let db: FirestoreDb | null = initFirestoreClient();
 
-function readFirebaseConfig(): { projectId: string; dbId?: string } {
-  const cfg = loadConfigFile();
-  const envDb = process.env.FIRESTORE_DATABASE_ID;
-  const projectId = process.env.FIREBASE_PROJECT_ID || cfg.projectId || 'asg-ods';
-  const dbId = envDb && envDb !== '(default)' ? envDb : cfg.firestoreDatabaseId || envDb;
-  return { projectId, dbId };
-}
-
-function initFirestoreInstance(): Firestore | null {
-  try {
-    const { projectId, dbId } = readFirebaseConfig();
-    const app = getApps().length ? getApps()[0] : initializeApp({ projectId });
-    return dbId && dbId !== '(default)' ? getFirestore(app, dbId) : getFirestore(app);
-  } catch (e) {
-    console.error('Falha ao inicializar Firestore Admin:', e);
-    return null;
-  }
-}
-
-export let db = initFirestoreInstance();
-
-export function setFirestoreInstance(instance: Firestore | null): void {
+export function setFirestoreInstance(instance: FirestoreDb | null): void {
   db = instance;
 }
 export const app = express();
@@ -178,6 +150,7 @@ function serveWellKnown(req: Request, res: Response): void {
 }
 
 app.get('/.well-known/:file', serveWellKnown);
+app.get('/api/vlibras-unity', serveVlibrasUnityBridge);
 
 app.post('/api/registrar-interesse', rateLimiter, async (req: Request, res: Response) => {
   const result = await persistLead(req.body);

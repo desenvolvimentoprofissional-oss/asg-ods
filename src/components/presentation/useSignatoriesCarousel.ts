@@ -62,6 +62,11 @@ export function useCarouselAutoLoop(
       const { singleSetWidth } = calcDimensions(ref.current, itemCount);
       ref.current.scrollLeft = singleSetWidth;
     }
+    const prefersReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
     const timer = setInterval(() => {
       if (typeof document !== 'undefined' && ref.current?.contains(document.activeElement)) return;
       onTick();
