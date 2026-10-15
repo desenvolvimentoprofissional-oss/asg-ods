@@ -11,6 +11,7 @@ const ALLOWED_ROOT_FILES = new Set([
   '.env.example',
   '.firebaserc',
   '.gitignore',
+  'AGENTE-DOCUMENTACAO.md',
   'AGENTS.MD',
   'RELATORIO-CONFORMIDADE-METRICAS.md',
   'eslint.config.js',

@@ -1,25 +1,9 @@
 import fs from 'node:fs';
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore, doc, runTransaction } from 'firebase/firestore';
-import type {
-  Firestore as ClientFirestore,
-  DocumentReference,
-  WithFieldValue,
-  DocumentData,
-} from 'firebase/firestore';
-export type { DocumentReference };
+import { initializeApp, getApps } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import type { Firestore, Transaction, DocumentReference } from 'firebase-admin/firestore';
 
-export interface FirestoreTx {
-  get(ref: DocumentReference): Promise<{ exists: boolean; data(): Record<string, unknown> | undefined }>;
-  set(ref: DocumentReference, data: object): void;
-}
-
-export interface FirestoreDb {
-  collection(name: string): {
-    doc(id: string): DocumentReference;
-  };
-  runTransaction<T>(fn: (tx: FirestoreTx) => Promise<T>): Promise<T>;
-}
+export type { Firestore as FirestoreDb, Transaction as FirestoreTx, DocumentReference };
 
 export function loadFirebaseConfigFile(): { projectId?: string; firestoreDatabaseId?: string } {
   try {
@@ -29,62 +13,34 @@ export function loadFirebaseConfigFile(): { projectId?: string; firestoreDatabas
   }
 }
 
-export function createFirestoreClient(clientDb: ClientFirestore): FirestoreDb {
-  return {
-    collection: (colName: string) => ({
-      doc: (docId: string) => doc(clientDb, colName, docId),
-    }),
-    runTransaction: async <T>(updateFunction: (tx: FirestoreTx) => Promise<T>): Promise<T> => {
-      return runTransaction(clientDb, async (rawTx) => {
-        const wrappedTx: FirestoreTx = {
-          get: async (ref) => {
-            const snap = await rawTx.get(ref);
-            return {
-              exists: snap.exists(),
-              data: () => snap.data() as Record<string, unknown> | undefined,
-            };
-          },
-          set: (ref, data) => {
-            rawTx.set(ref, data as WithFieldValue<DocumentData>);
-          },
-        };
-        return updateFunction(wrappedTx);
-      });
-    },
-  };
-}
-
-function resolveProjectId(cfgId?: string): string {
+export function resolveProjectId(cfgId?: string): string {
   if (process.env.FIREBASE_PROJECT_ID) return process.env.FIREBASE_PROJECT_ID;
   if (cfgId) return cfgId;
   return 'asg-ods';
 }
 
-const DEFAULT_DB_ID = 'ai-studio-componenteasgods-8ee576da-afbc-43cb-932c-778d3594fd2f';
-
-function resolveDatabaseId(cfgDbId?: string): string {
-  if (cfgDbId && cfgDbId !== '(default)') return cfgDbId;
+export function resolveDatabaseId(cfgDbId?: string): string | undefined {
   const env = process.env.FIRESTORE_DATABASE_ID;
   if (env && env !== '(default)') return env;
-  return DEFAULT_DB_ID;
+  if (cfgDbId && cfgDbId !== '(default)') return cfgDbId;
+  return undefined;
 }
 
-function getOrInitApp(projectId: string, cfg: Record<string, unknown>) {
+function getOrInitApp(projectId: string) {
   const existing = getApps();
   if (existing.length > 0) return existing[0];
-  return initializeApp({ ...cfg, projectId });
+  return initializeApp({ projectId });
 }
 
-export function initFirestoreClient(): FirestoreDb | null {
+export function initFirestoreClient(): Firestore | null {
   try {
     const cfg = loadFirebaseConfigFile();
     const projectId = resolveProjectId(cfg.projectId);
     const dbId = resolveDatabaseId(cfg.firestoreDatabaseId);
-    const app = getOrInitApp(projectId, cfg);
-    const clientDb = dbId ? getFirestore(app, dbId) : getFirestore(app);
-    return createFirestoreClient(clientDb);
+    const app = getOrInitApp(projectId);
+    return dbId ? getFirestore(app, dbId) : getFirestore(app);
   } catch (err) {
-    console.error('Falha ao inicializar Firestore Client:', err);
+    console.error('Falha ao inicializar Firebase Admin:', err);
     return null;
   }
 }
